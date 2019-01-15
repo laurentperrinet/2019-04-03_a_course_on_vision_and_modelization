@@ -1,6 +1,5 @@
 #! /usr/bin/env python3
 # -*- coding: utf-8 -*-
-# Evening Lectures: Demonstration of methods and techniques about computational neuroscience. Students will learn how to work analytically and by numerical simulations in biomedical applications.
 __author__ = "Laurent Perrinet INT - CNRS"
 __licence__ = 'BSD licence'
 DEBUG = True
@@ -17,10 +16,6 @@ figpath_slides = os.path.join(home, 'nextcloud/libs/slides.py/figures/')
 # figpath_méjanes = os.path.join(home, 'pool/blog/invibe/output/files/2016-04-28_méjanes/figures')
 # figpath_FLE = os.path.join(home, 'ownCNRS/2018-03-26_cours-NeuroComp_FEP/figures')
 #
-# images_etienne = [         '2016_elasticite/photos/E-REY-TRAME_Elasticité-Vasarely.JPG',
-#          '2018_TRAMES/files/2017-10-03_instabilité_N_pix=9449-R_dis=1.50-theta=29.00 deg-freq_A=0.07-R_dis_A=1.50-freq_B=0.03-R_dis_B=1.51-seuil_A=0.70-seuil_B=0.75-gain=10.00_render.png',
-#          '2013_Tropique/photos/EtienneRey-Tropique-2011-C.JPG',
-# ]
 import sys
 print(sys.argv)
 tag = sys.argv[0].split('.')[0]
@@ -61,8 +56,8 @@ meta = dict(
  author='Laurent Perrinet, INT',
  #author_link='Chloé Pasturel, Laurent Perrinet and Anna Montagnini',
  author_link='<a href="http://invibe.net">Laurent Perrinet</a>',
- short_title='Modelling spiking neural networks using Brian, Nest and pyNN',
- title='Modelling spiking neural networks using Brian, Nest and pyNN',
+ short_title='Efficient coding of visual information in neural computations',
+ title='Efficient coding of visual information in neural computations',
  conference_url='http://www.laconeu.cl',
  short_conference='LACONEU 2019',
  conference='LACONEU 2019: 5th Latin-American Summer School in Computational Neuroscience',
@@ -81,10 +76,10 @@ wiki_extras="""
 <<Include(AnrHorizontalV1Aknow)>>
 ----
 TagYear{YY} TagTalks [[TagAnrHorizontalV1]]""".format(YY=str(YYYY)[-2:]),
-sections= ['Modelling SNNs',
-            'Single cells',
-            'Populations of cells',
-            'Plasticity', ]
+sections= ['Efficiency, vision and neurons',
+            'Sparse coding',
+            'Sparse Hebbian Learning',
+            ]
 )
 
 # https://pythonhosted.org/PyQRCode/rendering.html
@@ -119,7 +114,7 @@ s.hide_slide(content=s.content_figures(
 Check-list:
 -----------
 
-* (before) bring miniDVI adaptors, AC plug, remote, pointer
+* (before) bring VGA adaptors, AC plug, remote, pointer
 * (avoid distractions) turn off airport, screen-saver, mobile, sound, ... other running applications...
 * (VP) open monitor preferences / calibrate / title page
 * (timer) start up timer
@@ -133,23 +128,13 @@ intro = """
 <h2 class="title">{title}</h2>
 <h3>{author_link}</h3>
 """.format(**meta)
-# intro += s.content_figures(
-# [os.path.join(figpath_aSPEM, "troislogos.png")], bgcolor="black",
-# height=s.meta['height']*.2, width=s.meta['height']*.75)
 intro += s.content_imagelet(os.path.join(figpath_slides, "troislogos.png"), s.meta['height']*.2) #bgcolor="black",
-#intro += s.content_imagelet(os.path.join(figpath_talk, 'qr.png'), s.meta['height']*.2) #bgcolor="black",
-# height=s.meta['height']*.2, width=s.meta['height']*.2)
-#
 intro += """
 <h4><a href="{conference_url}">{conference}</a>, {DD}/{MM}/{YYYY} </h4>
 """.format(**meta)
-# intro += """
-# <h4><a href="{conference_url}">{conference}</a>, {DD}/{MM}/{YYYY} </h4>
-# {Acknowledgements}
-# """.format(**meta)
 
 s.add_slide(content=intro,
-        notes="""
+            notes="""
 * (AUTHOR) Hi, I am Laurent Perrinet from (LOGO) the Institute de Neurosciences de la Timone in Marseille, a joint unit from the CNRS and AMU. Using computational models, I am investigating the link between the efficiency of behavioural responses in vision, their underlying neural code and their adaptation to the structure of the world.
 
 * (SHOW TITLE - THEME) = mon but ici est de montrer quelques aspects de mon projet de recherche et en particulier des echos de ces tracaux que nous avons realiséavec Etienne Rey
@@ -157,115 +142,218 @@ please interrupt
 
 """)
 
-
-
-s.add_slide(content=s.content_figures([figname], cell_bgcolor=meta['bgcolor'], height=s.meta['height']*height_ratio) + '<BR><a href="{url}"> {url} </a>'.format(url= meta['url']),
-notes=" All the material is available online - please flash this QRcode this leads to a page with links to further references and code ")
+s.add_slide(content=s.content_figures([figname], cell_bgcolor=meta['bgcolor'], height=s.meta['height']*height_ratio) + '<BR><a href="{url}"> {url} </a>'.format(url=meta['url']),
+            notes=" All the material is available online - please flash this QRcode this leads to a page with links to further references and code ")
 
 s.add_slide(content=intro,
-    notes="""
-* (ACKNO) this endeavour involves different techniques, tools and... persons. From the head on, I wish to acknowledezg Chloe and Anna for doing most of this work +  thank the people who collaborated directly or indeirectly to this project and in particular Berk Mirza, Rick Adams and Karl Friston and the Wellcome Trust Centre for Neuroimaging for providing the tools for a successful visit and finally Jean-Bernard and Laurent Madelain for their essential knowledge in adaptation and reinforcement. C'est aussi le mentoring de Jean PEtitot quand j'était étudiant cogmaster ("DEA Sciences cognitives")
+            notes="""
+* (AUTHOR) Hello, I am Laurent Perrinet from the Institute of Neurosciences of
+la Timone in Marseille, a joint unit from the CNRS and the AMU
+* (OBJECTIVE) in this short talk, I will be focus in highlighting
+some key challenges in modelizing visual perception and
+* (ACKNO) this endeavour involves different techniques and tools ...
+From the head on, I wish to thanks people who collaborated  and in particular ..
+  mostly funded by the ANR bala V1
+(hansel wreeiswijk nowak) + ANR TRAJECTORY (o marrre bruno cessac palacios )
++ LONDON (Jim Bednar, Friston)
+great thanks to Stéphane for proposing me to present this work
+* (SHOW TITLE) I am interested in the link
+between the neural code and the structure of the world.
+in particular, for vision, I am researching
+the relation between the
+functional (in terms of the inferential processes leading to  behaviour)
+organization (anatomy and activity)
+of low-level visual areas (V1) and the structures of natural scenes,
+that is of the images that hit the retina and which are
+relevant to visual perception in general.
+
+so what is visual perception?
+""")
+
+
+review_bib = s.content_bib("LP", "2015", '"Sparse models" in <a href="http://invibe.net/LaurentPerrinet/Publications/Perrinet15bicv">Biologically Inspired Computer Vision</a>')
+
+figpath = os.path.join(home,  'pool/science/BICV/bicv.github.io/images')
+s.add_slide(image_fname=os.path.join(figpath, 'bicv_banner.jpg'),
+            content=s.content_figures(
+                    [os.path.join(figpath, 'bicv_cover.jpg')],
+                    title=None, height=s.meta['height']*.85)+review_bib,
+            notes="""
+... by linking to the statistics of natural images:
+
+* (natural) For instance, oriented edges that constitute images of natural scenes
+tend to be aligned in co-linear or co-circular arrangements, such as when
+💠 you follow the contours of these boulders: lines and smooth curves
+are more common than other possible arrangements of edges. See for example
+the work of Mariano Sigman on co-circularity in natural images (see Sigman, 2001).
+
+* (neural) The visual system appears to take advantage of this prior
+information, and human contour detection and grouping performance is well
+predicted by what is coined an "association field" (Field et al., 1993)...
+""")
+
+
+figpath = os.path.join(home,  'pool/science/RetinaClouds/')
+s.add_slide(content="""
+    <video controls loop width=99%/>
+      <source type="video/mp4" src="{}">
+    </video>
+    """.format(s.embed_video(os.path.join(figpath, '2016-09-14_droplets_round2/data_cache/2016-09-14_frames/00004_droplets_i_sparse_0_seed_1973.mp4'))),
+            notes="""
+
 
 """)
 
-# https://brian2.readthedocs.io/en/stable/_static/brian-logo.png
-# http://www.nest-initiative.org/wp-content/uploads/2015/03/nest-initiative_logo.png
-# http://neuralensemble.org/docs/PyNN/0.7/_static/pyNN_logo.png
+
+figpath = os.path.join(home, 'quantic/2016_science/2014-04-17_HDR/figures/')
+# anatomical
 s.add_slide(content=s.content_figures(
-        [os.path.join(figpath_talk, "brian-logo.png"),
-         os.path.join(figpath_talk, "nest-initiative_logo.png"),
-         os.path.join(figpath_talk, "pyNN_logo.png"), ], bgcolor="black",
-        title=s.meta['title'], height=s.meta['height']*.4),
-          notes="""
-
+        [os.path.join(figpath, 'Bosking97Fig4.jpg')], title=None,
+            height=s.meta['height']*.85) +
+            s.content_bib("Bosking et al.", "1997", " Journal of Neuroscience"),
+            notes="""
+... is the set of long-range lateral connections between neurons, which could
+act to facilitate detection of contours matching the association field, and/or
+inhibit detection of other contours. To fill this role, the lateral connections
+would need to be orientation specific and aligned along contours, * (colin) and
+indeed such an arrangement has been found in treeshrew's primary visual
+cortex  (Bosking et al., J Neurosci 17:2112-27, 1997)
+* (neural) if one looks at  the primary visual area in the occipital lobe of the cortex
+using optical imaging as here in the treeshrew by Bosking and colleagues under the
+supervision of DF, one could represent the distributed, topographical representation
+of orientation selectivity. in (A) and (B) the orientation giving the most response
+at each cortical position is represented by hue using the code below from orange for
+horizontal to blue for verticals, and typical structures are magnified in (C): stripes
+(on the periphery) and pinwheels. You can understand this as a packing of a 3D feature
+space on the 2D surface of the cortex.
+* (method)  Tree shrew orientation preference maps were obtained using optical imaging.
+Additionally, 540 nm light was used to map surface blood vessels used for alignment.
+Biocytin was then injected into a specific site in V1 and the animal was sacrificed 16
+hours later. Slices of V1 were imaged to locate the biocytin bouton and the surface
+blood vessels. The blood vessel information was then used to align the orientation
+preference maps with the bouton images giving overlaid information on the underlying
+connectivity from the injection site on the animal. The original experiment used a total
+of ten cases.
+* (lateral) we show here one result of Bosking
+which overlay over a map or orientation selectivity the network of lateral connectivity
+originating froma group of neurons with similar orientations and position. There is
+a structure in this connectivity towards locality (more pronounced for site B) +
+connecting iso orientations even on long ranges (A). This type of structure tends
+to wire together those neurons that have similar orientations, indicating a prior
+to colinearities.
+*(colin) ... Overall, a typical assumption that the role of lateral interactions is to
+enhance the activity of neurons which are collinear : it is the so-called
+**association field** formalized in Field 93, as was for instance modeled neurally in
+the work from P. Series or in this version for computer vision
+* (physio) is there a match of these structures with the statistics of natural images?
+ 2) Some authors (Kisvarday, 1997, Chavane and Monier) even say it is weak or
+inexistent on a the scale of the area... 1:  Hunt & Goodhill have reinterpreted above data and shown that there is more diversity
+than that -
+* TRANSITION : my goal here will be to tackle this problem at different levels:
 """)
+
 s.close_section()
 
 i_section += 1
 ###############################################################################
-## 🏄🏄🏄🏄🏄🏄🏄🏄 Single cells - 15''  🏄🏄🏄🏄🏄🏄🏄🏄
+# 🏄🏄🏄🏄🏄🏄🏄🏄 Sparse coding  🏄🏄🏄🏄🏄🏄🏄🏄
 ###############################################################################
 ###############################################################################
 s.open_section()
 title = meta['sections'][i_section]
 s.add_slide_outline(i_section)
 
+figpath = os.path.join(home,  'quantic/2016_science/2014-04-17_HDR/figures/')
+figpath = os.path.join(home,  'quantic/2016_science/2017-01-19_BICV_sparse/figures/')
+s.add_slide(content="""
+    <video controls loop width=99%/>
+      <source type="video/mp4" src="{}">
+    </video>
+    """.format(s.embed_video(os.path.join('figures', 'MP.mp4'))))
+
+figpath = os.path.join(home,  'quantic/2016_science/2016-12-XX_PerrinetBednar15/figures/')
+srep_bib = s.content_bib("LP and Bednar", "2015", 'Scientific Reports, <a href="http://www.nature.com/articles/srep11400">http://www.nature.com/articles/srep11400</a>')
 s.add_slide(content=s.content_figures(
-        [os.path.join(figpath_talk, "HH_Models.png"), ], bgcolor="black",
-        title=None, height=s.meta['height']*.8),
-          notes="""
-# ownCNRS/2019-01_LACONEU/2019-01-14_LACONEU/tmp/4-HH Models.ipynb
-ownCNRS/2019-01_LACONEU/2019-01-14_LACONEU/A_1_HodgkinHuxley.ipynb
-HH_firing.png
+        [os.path.join(figpath, 'figure_synthesis.jpg')], bgcolor="white",
+        title=None, height=s.meta['height']*.85) + srep_bib,
+           notes="""
+
+We first extracted the edges from images using a scale-space analysis (all OSS
+on github) The histogram was computed as a a 4-dimensional function of
+distance, (symmetrical) azimuth $\psi$, difference of orientation $\theta$ and
+ratio of scale. ... second-order statistics are efficiently computed by using a
+the algorithm from Geisler et al. (2001), with a more general edge extraction
+algorithm that uses sparse coding %to avoid multiple responses to a single
+edge.  * ... Collinearity and co-circularity results for natural images
+replicated qualitatively the results from Geisler et al. (2001), confirming
+that prior information about continuations appeared consistently in natural
+images.
+
+Probability distribution function of "chevrons" * (angles)  By computing
+measures of the independence of the different variables, we found that the
+probability density function of the second-order statistics of edges factorizes
+with on one side distance and scale and on the other side the 2 angles.  The
+first component proved to be quite similar across both classes and the greater
+difference is seen for different angle configuration. As it can be reduced to 2
+dimensions, we can plot the full probability as shown here by different
+contrast values assigned to all possible chevrons configurations, for all
+possible "azimuth" values $\psi$ on the horizontal axis and difference of
+orientation $\theta$ on the vertical axis. Such a plot most strikingly shows
+the difference between these 2 classes.  one issue now that we can show the 2nd
+order statistics is to know if it would be possible to quantify such
+difference...
+
+* (colin)  let's first replicate the result from Geisler by showing that
+relative to a given edge (segment in the center), what is the Here I show for
+each distance and angle the most probable difference of angle, showing that
+collinear and parallel edges predominate.  (cocir) a similar pattern is observed the
+cocircular plot. it reproduces the results from Geisler on natural images, but
+laboratory environment shows a strong bias to colinearity. If we believe
+bosking link, obviously, this should have a consequence on antomy. thus we test
+whether these AF were different across different image classes.
 """)
-
-s.add_slide(content=s.content_figures(
-        [os.path.join(figpath_talk, "HH_firing.png"), ], bgcolor="black",
-        title=None, height=s.meta['height']*.8),
-          notes="""
-# ownCNRS/2019-01_LACONEU/2019-01-14_LACONEU/tmp/4-HH Models.ipynb
-ownCNRS/2019-01_LACONEU/2019-01-14_LACONEU/A_1_HodgkinHuxley.ipynb
-HH_firing.png
-""")
-
-s.add_slide(content=s.content_figures(
-        [os.path.join(figpath_talk, "IF_cond_exp.png"), ], bgcolor="black",
-        title=None, height=s.meta['height']*.8),
-          notes="""
-
-# http://neuralensemble.org/docs/PyNN/0.7/_images/IF_cond_exp.png
-
-""")
-
-s.add_slide(content=s.content_figures(
-        [os.path.join(figpath_talk, "izhik.png"), ], bgcolor="black",
-        title=None, height=s.meta['height']*.8),
-          notes="""
-
-# https://www.izhikevich.org/publications/izhik.png
-
-""")
-
-s.add_slide(content=s.content_figures(
-        [os.path.join(figpath_talk, "hugoladret_InternshipM2_CUBA.png"), ], bgcolor="black",
-        title=None, height=s.meta['height']*.8),
-          notes="""
-
-# https://github.com/hugoladret/InternshipM2/blob/master/FINAL_Retina_LGN_generation.ipynb
-
-""")
-
 
 s.close_section()
 
 i_section += 1
 ###############################################################################
-# 🏄🏄🏄🏄🏄🏄🏄🏄         Populations of cells - 15''              🏄🏄🏄🏄🏄🏄🏄🏄
+# 🏄🏄🏄🏄🏄🏄🏄🏄         Sparse Hebbian Learning - 15''              🏄🏄🏄🏄🏄🏄🏄🏄
 ###############################################################################
 ###############################################################################
 
 s.open_section()
 title = meta['sections'][i_section]
 s.add_slide_outline(i_section)
-s.add_slide(content=s.content_figures(
-        [os.path.join(figpath_talk, "Fig_ring_model.png"), ], bgcolor="black",
-        title=None, height=s.meta['height']*.8),
-          notes="""
-
-# /Volumes/data/2018_backup/archives/2018_science/2018_HL_M1/figs/Fig_ring_model.pdf
-#
-
-""")
 
 
-for figname in ['Brunel200Fig1.png', 'Brunel200Fig2.png']:
+figpath = os.path.join(home,  'quantic/2016_science/2014-04-17_HDR/figures/')
+s.add_slide(content="""
+    <video controls loop width=99%/>
+      <source type="video/mp4" src="{}">
+    </video>
+    """.format(s.embed_video(os.path.join(figpath, 'ssc.mp4'))))
+for suffix in ['_a', '_ab', '']:
     s.add_slide(content=s.content_figures(
-        [os.path.join(figpath_talk, figname), ], bgcolor="black",
-        title=None, height=s.meta['height']*.8),
-          notes="""
+        [os.path.join('figures', 'figure_sparsenet' + suffix + '.png')], bgcolor="black",
+        title=None, height=s.meta['height']*.7) + review_bib,
+           notes="""
+
+discussion...
+
+""")
+
+figpath = os.path.join(home,  'quantic/2016_science/2017-01-19_BICV_sparse/figures/')
+figpath = os.path.join(home,  'pool/science/BICV/SHL_scripts/')
 
 
-# https://sci-hub.tw/https://doi.org/10.1016/S0925-2312(00)00179-X
+for suffix in ['_nohomeo', '_homeo']:
+
+    s.add_slide(content=s.content_figures(
+        [os.path.join('figures', 'fig_laughlin.png'), os.path.join(figpath, 'ssc' + suffix + '.png')], bgcolor="black",
+        title=None, list_of_weights=[1., 2.], height=s.meta['height']*.85) + review_bib,
+       notes="""
+
+discussion...
 
 """)
 
@@ -273,7 +361,7 @@ s.close_section()
 
 i_section += 1
 ###############################################################################
-## 🏄🏄🏄🏄🏄🏄🏄🏄 STDP - 15''  🏄🏄🏄🏄🏄🏄🏄🏄
+# 🏄🏄🏄🏄🏄🏄🏄🏄 STDP - 15''  🏄🏄🏄🏄🏄🏄🏄🏄
 ###############################################################################
 ###############################################################################
 
@@ -303,12 +391,12 @@ s.add_slide(content=s.content_figures(
 s.close_section()
 
 ###############################################################################
-## 🏄🏄🏄🏄🏄🏄🏄🏄 OUTRO - 5''  🏄🏄🏄🏄🏄🏄🏄🏄
+# 🏄🏄🏄🏄🏄🏄🏄🏄 OUTRO - 5''  🏄🏄🏄🏄🏄🏄🏄🏄
 ###############################################################################
 ###############################################################################
 s.open_section()
 s.add_slide(content=intro,
-    notes="""
+            notes="""
 * Thanks for your attention!
 """)
 s.close_section()
@@ -348,7 +436,7 @@ if slides_filename is None:
 }}}}}}
 ## add an horizontal rule to end the include
 {wiki_extras}
-""".format(**meta) )
+""".format(**meta))
 
 else:
     s.compile(filename=slides_filename)
