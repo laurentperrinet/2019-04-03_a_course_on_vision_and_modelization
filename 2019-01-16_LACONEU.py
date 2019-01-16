@@ -443,7 +443,7 @@ figpath = os.path.join(home, 'science/ABC/HULK/')
 for suffix in ['map', 'HAP']:
     s.add_slide(content=s.content_figures(
         [os.path.join(figpath, 'figure_' + suffix + '.png')], bgcolor="black",
-    title=None, height=s.meta['height']*.61803),
+    title=None, height=s.meta['height']*.75),
            notes="""
 a contribution we made to this algorithm is homeostasis
 
@@ -487,7 +487,7 @@ Multi-layered unsupervised Learning
 s.add_slide(content=s.content_figures(
     [os.path.join(figpath, 'SDPC_' + suffix + '.png') for suffix in ['3', '4']],
     bgcolor="black", fragment=True,
-    title=None, height=s.meta['height']*.61803),
+    title=None, height=s.meta['height']*.75),
        notes="""
 
 allows for a better classification as here for MNIST digits
