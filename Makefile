@@ -1,4 +1,4 @@
-default: show
+default: github
 
 SRC=2019-01-16_LACONEU
 
@@ -18,12 +18,7 @@ show: html
 #	open -a firefox $(SRC).html
 	open /Applications/Safari.app/Contents/MacOS/Safari $(SRC).html
 
-blog: html
-	cp $(SRC).html  ~/pool/blog/invibe/files
-	# sh deploy.sh
-	cd ~/pool/blog/invibe/ ; nikola build ; nikola deploy
-	open http://blog.invibe.net/files/$(SRC).html
-
-github:
-	git commit -am' adding notes'
+github: html
+	git commit -am' updating slides'
 	git push
+	open https://laurentperrinet.github.io/$(SRC)
