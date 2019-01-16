@@ -276,8 +276,10 @@ than that -
 
 jens_bib = s.content_bib("Kremkow, LP, Monier, Alonso, Aertsen, Fregnac, Masson", "2016", 'Push-pull receptive field organization and synaptic depression: Mechanisms for reliably encoding naturalistic stimuli in V1', url='http://invibe.net/LaurentPerrinet/Publications/Kremkow16')
 jens_url = 'https://www.frontiersin.org/files/Articles/190318/fncir-10-00037-HTML/image_m/'
-s.add_slide(content=s.content_figures(
-        [jens_url + 'fncir-10-00037-g001.jpg'], bgcolor="white",
+jens_url = 'figures/'
+for l in ['a', 'b', '']:
+    s.add_slide(content=s.content_figures(
+        [jens_url + 'fncir-10-00037-g001' + l + '.jpg'], bgcolor="white",
         title=None, height=s.meta['height']*.8) + jens_bib,
            notes="""
 
