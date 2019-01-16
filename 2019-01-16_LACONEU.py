@@ -67,8 +67,8 @@ wiki_extras="""
 ----
 TagYear{YY} TagTalks [[TagAnrHorizontalV1]]""".format(YY=str(YYYY)[-2:]),
 sections=['Efficiency, vision and neurons',
-            'Sparse coding',
-            'Sparse Hebbian Learning']
+          'Sparse coding in the retina?',
+          'Sparse Hebbian Learning']
 )
 
 # https://pythonhosted.org/PyQRCode/rendering.html
@@ -158,23 +158,31 @@ so what is visual perception?
 
 review_bib = s.content_bib("LP", "2015", '"Sparse models" in <a href="http://invibe.net/LaurentPerrinet/Publications/Perrinet15bicv">Biologically Inspired Computer Vision</a>')
 
-figpath = os.path.join(home,  'pool/blog/bicv.github.io/images')
-s.add_slide(content=s.content_figures(
-                    [os.path.join(figpath, 'bicv_cover.jpg')],
-                    title=None, height=s.meta['height']*.85)+review_bib,
-            notes="""
-... by linking to the statistics of natural images:
+figpath = os.path.join(home, 'Desktop/2017-01_LACONEU/figures/')
+s.add_slide(content="""
+    <video controls loop width=60%/>
+      <source type="video/mp4" src="{}">
+    </video>
+    """.format(s.embed_video(os.path.join(figpath, 'MP.mp4'))))
 
-* (natural) For instance, oriented edges that constitute images of natural scenes
-tend to be aligned in co-linear or co-circular arrangements, such as when
-💠 you follow the contours of these boulders: lines and smooth curves
-are more common than other possible arrangements of edges. See for example
-the work of Mariano Sigman on co-circularity in natural images (see Sigman, 2001).
-
-* (neural) The visual system appears to take advantage of this prior
-information, and human contour detection and grouping performance is well
-predicted by what is coined an "association field" (Field et al., 1993)...
-""")
+#
+# figpath = os.path.join(home,  'pool/blog/bicv.github.io/images')
+# s.add_slide(content=s.content_figures(
+#                     [os.path.join(figpath, 'bicv_cover.jpg')],
+#                     title=None, height=s.meta['height']*.85)+review_bib,
+#             notes="""
+# ... by linking to the statistics of natural images:
+#
+# * (natural) For instance, oriented edges that constitute images of natural scenes
+# tend to be aligned in co-linear or co-circular arrangements, such as when
+# 💠 you follow the contours of these boulders: lines and smooth curves
+# are more common than other possible arrangements of edges. See for example
+# the work of Mariano Sigman on co-circularity in natural images (see Sigman, 2001).
+#
+# * (neural) The visual system appears to take advantage of this prior
+# information, and human contour detection and grouping performance is well
+# predicted by what is coined an "association field" (Field et al., 1993)...
+# """)
 
 #
 # figpath = os.path.join(home,  'pool/science/RetinaClouds/')
@@ -189,30 +197,16 @@ predicted by what is coined an "association field" (Field et al., 1993)...
 # """)
 
 
-figpath = os.path.join(home,  'pool/science/RetinaCloudsSparse/2015-11-13_droplets/2015-11-13_1310_full_files/droplets_full')
-for fname in ['00012_droplets_i_sparse_3_n_sf_8.mp4', '00006_droplets_i_sparse_5_n_sf_1.mp4']:
-    s.add_slide(content="""
-        <video controls loop width=60%/>
-          <source type="video/mp4" src="{}">
-        </video>
-        """.format(s.embed_video(os.path.join(figpath, fname))),
-                notes="""
-
-
-    """)
-
-
-droplets_bib = s.content_bib('Ravello, Escobar, Palacios, LP', '2019', 'in prep', url=None)
-figpath = os.path.join(home, 'science/DropLets/figures/')
-s.add_slide(content=s.content_figures(
-                    [os.path.join(figpath, 'retina_sparseness_droplets.png'),
-                     os.path.join(figpath, 'PSTH11.png'),
-                     os.path.join(figpath, 'PSTH25.png')], fragment=True, transpose=True,
-                    title=None, height=s.meta['height']*.7)+droplets_bib,
-            notes="""
-figure 3 of droplets
+ols_bib = s.content_bib("Olshausen and Field", "1997", 'Sparse coding with an overcomplete basis set: A strategy employed by V1?')
+for i in [1, 2, 5]:
+    s.add_slide(content=s.content_figures(
+        [os.path.join(figpath_talk, 'Olshausen_'+ str(i) + '.png')], bgcolor="white",
+        title=None, height=s.meta['height']*.85) + ols_bib,
+           notes="""
 
 """)
+
+
 
 figpath = os.path.join(home, 'pool/science/PerrinetBednar15/talk/')
 # anatomical
@@ -260,7 +254,48 @@ inexistent on a the scale of the area... 1:  Hunt & Goodhill have reinterpreted 
 than that -
 * TRANSITION : my goal here will be to tackle this problem at different levels:
 """)
-
+#
+# figpath = os.path.join(home, 'pool/science/PerrinetBednar15/figures/')
+# srep_bib = s.content_bib("LP and Bednar", "2015", 'Scientific Reports, <a href="http://www.nature.com/articles/srep11400">http://www.nature.com/articles/srep11400</a>')
+# s.add_slide(content=s.content_figures(
+#         [os.path.join(figpath, 'figure_synthesis.png')], bgcolor="white",
+#         title=None, height=s.meta['height']*.85) + srep_bib,
+#            notes="""
+#
+# We first extracted the edges from images using a scale-space analysis (all OSS
+# on github) The histogram was computed as a a 4-dimensional function of
+# distance, (symmetrical) azimuth $\psi$, difference of orientation $\theta$ and
+# ratio of scale. ... second-order statistics are efficiently computed by using a
+# the algorithm from Geisler et al. (2001), with a more general edge extraction
+# algorithm that uses sparse coding %to avoid multiple responses to a single
+# edge.  * ... Collinearity and co-circularity results for natural images
+# replicated qualitatively the results from Geisler et al. (2001), confirming
+# that prior information about continuations appeared consistently in natural
+# images.
+#
+# Probability distribution function of "chevrons" * (angles)  By computing
+# measures of the independence of the different variables, we found that the
+# probability density function of the second-order statistics of edges factorizes
+# with on one side distance and scale and on the other side the 2 angles.  The
+# first component proved to be quite similar across both classes and the greater
+# difference is seen for different angle configuration. As it can be reduced to 2
+# dimensions, we can plot the full probability as shown here by different
+# contrast values assigned to all possible chevrons configurations, for all
+# possible "azimuth" values $\psi$ on the horizontal axis and difference of
+# orientation $\theta$ on the vertical axis. Such a plot most strikingly shows
+# the difference between these 2 classes.  one issue now that we can show the 2nd
+# order statistics is to know if it would be possible to quantify such
+# difference...
+#
+# * (colin)  let's first replicate the result from Geisler by showing that
+# relative to a given edge (segment in the center), what is the Here I show for
+# each distance and angle the most probable difference of angle, showing that
+# collinear and parallel edges predominate.  (cocir) a similar pattern is observed the
+# cocircular plot. it reproduces the results from Geisler on natural images, but
+# laboratory environment shows a strong bias to colinearity. If we believe
+# bosking link, obviously, this should have a consequence on antomy. thus we test
+# whether these AF were different across different image classes.
+# """)
 s.close_section()
 
 i_section += 1
@@ -272,53 +307,53 @@ s.open_section()
 title = meta['sections'][i_section]
 s.add_slide_outline(i_section)
 
-figpath = os.path.join(home,  'Desktop/2017-01_LACONEU/figures/')
+# s.add_slide(content=s.content_figures(
+#         [os.path.join(figpath_talk, 'Olshausen_5.png')], bgcolor="white",
+#         title=None, height=s.meta['height']*.85) + ols_bib,
+#            notes="""
+#
+# """)
+
+# figpath = os.path.join(home, 'Desktop/2017-01_LACONEU/figures/')
 s.add_slide(content="""
-    <video controls loop width=99%/>
+    <video controls loop width=85%/>
       <source type="video/mp4" src="{}">
     </video>
-    """.format(s.embed_video(os.path.join(figpath, 'MP.mp4'))))
+    """.format(s.embed_video(os.path.join(figpath_talk, 'v1_tiger.mp4'))))
 
-figpath = os.path.join(home, 'pool/science/PerrinetBednar15/figures/')
-srep_bib = s.content_bib("LP and Bednar", "2015", 'Scientific Reports, <a href="http://www.nature.com/articles/srep11400">http://www.nature.com/articles/srep11400</a>')
+
+droplets_bib = s.content_bib('Ravello, Escobar, Palacios, LP', '2019', 'in prep', url=None)
 s.add_slide(content=s.content_figures(
-        [os.path.join(figpath, 'figure_synthesis.jpg')], bgcolor="white",
-        title=None, height=s.meta['height']*.85) + srep_bib,
-           notes="""
+                    ['figures/Droplets_1.png'], fragment=True, transpose=True,
+                    title=None, height=s.meta['height']*.8)+droplets_bib,
+            notes="""
+figure 1 of droplets
 
-We first extracted the edges from images using a scale-space analysis (all OSS
-on github) The histogram was computed as a a 4-dimensional function of
-distance, (symmetrical) azimuth $\psi$, difference of orientation $\theta$ and
-ratio of scale. ... second-order statistics are efficiently computed by using a
-the algorithm from Geisler et al. (2001), with a more general edge extraction
-algorithm that uses sparse coding %to avoid multiple responses to a single
-edge.  * ... Collinearity and co-circularity results for natural images
-replicated qualitatively the results from Geisler et al. (2001), confirming
-that prior information about continuations appeared consistently in natural
-images.
+""")
 
-Probability distribution function of "chevrons" * (angles)  By computing
-measures of the independence of the different variables, we found that the
-probability density function of the second-order statistics of edges factorizes
-with on one side distance and scale and on the other side the 2 angles.  The
-first component proved to be quite similar across both classes and the greater
-difference is seen for different angle configuration. As it can be reduced to 2
-dimensions, we can plot the full probability as shown here by different
-contrast values assigned to all possible chevrons configurations, for all
-possible "azimuth" values $\psi$ on the horizontal axis and difference of
-orientation $\theta$ on the vertical axis. Such a plot most strikingly shows
-the difference between these 2 classes.  one issue now that we can show the 2nd
-order statistics is to know if it would be possible to quantify such
-difference...
+figpath = os.path.join(home,  'pool/science/RetinaCloudsSparse/2015-11-13_droplets/2015-11-13_1310_full_files/droplets_full')
+for fname in ['00006_droplets_i_sparse_5_n_sf_1.mp4', '00012_droplets_i_sparse_3_n_sf_8.mp4', ]:
+    s.add_slide(content="""
+        <video controls loop width=60%/>
+          <source type="video/mp4" src="{}">
+        </video>
+        """.format(s.embed_video(os.path.join(figpath, fname))),
+                notes="""
 
-* (colin)  let's first replicate the result from Geisler by showing that
-relative to a given edge (segment in the center), what is the Here I show for
-each distance and angle the most probable difference of angle, showing that
-collinear and parallel edges predominate.  (cocir) a similar pattern is observed the
-cocircular plot. it reproduces the results from Geisler on natural images, but
-laboratory environment shows a strong bias to colinearity. If we believe
-bosking link, obviously, this should have a consequence on antomy. thus we test
-whether these AF were different across different image classes.
+
+    """)
+
+
+droplets_bib = s.content_bib('Ravello, Escobar, Palacios, LP', '2019', 'in prep', url=None)
+figpath = os.path.join(home, 'science/DropLets/figures/')
+s.add_slide(content=s.content_figures(
+                    [os.path.join(figpath, 'retina_sparseness_droplets.png'),
+                     os.path.join(figpath, 'PSTH11.png'),
+                     os.path.join(figpath, 'PSTH25.png')], fragment=True, transpose=True,
+                    title=None, height=s.meta['height']*.7)+droplets_bib,
+            notes="""
+figure 3 of droplets
+
 """)
 
 s.close_section()
@@ -334,38 +369,89 @@ title = meta['sections'][i_section]
 s.add_slide_outline(i_section)
 
 
-figpath = os.path.join(home,  'Desktop/2017-01_LACONEU/figures/')
+figpath = os.path.join(home, 'Desktop/2017-01_LACONEU/figures/')
 s.add_slide(content="""
-    <video controls loop width=99%/>
+    <video controls loop width=60%/>
       <source type="video/mp4" src="{}">
     </video>
     """.format(s.embed_video(os.path.join('figures', 'ssc.mp4'))))
-for suffix in ['_a', '_ab', '']:
+#
+# for suffix in ['_a', '_ab', '']:
+#     s.add_slide(content=s.content_figures(
+#         [os.path.join(figpath, 'figure_sparsenet' + suffix + '.png')], bgcolor="black",
+#         title=None, height=s.meta['height']*.7) + review_bib,
+#            notes="""
+#
+# discussion...
+#
+# """)
+# figpath = os.path.join(home,  'quantic/2016_science/2017-01-19_BICV_sparse/figures/')
+# figpath = os.path.join(home,  'pool/science/BICV/SHL_scripts/')
+# figpath = os.path.join(home,  'Desktop/2017-01_LACONEU/figures/')
+# figpath_ssc = os.path.join(home,  'science/VB_These/2017-10-13-DD_Poster')
+#
+# for suffix in ['_nohomeo', '_homeo']:
+#
+#     s.add_slide(content=s.content_figures(
+#         [os.path.join(figpath, 'fig_laughlin.png'), os.path.join(figpath_ssc, 'ssc' + suffix + '.png')], bgcolor="black",
+#         title=None, list_of_weights=[1., 2.], height=s.meta['height']*.85),
+#        notes="""
+#
+# """)
+
+figpath = os.path.join(home, 'science/ABC/HULK/')
+
+for suffix in ['map', 'HAP']:
     s.add_slide(content=s.content_figures(
-        [os.path.join(figpath, 'figure_sparsenet' + suffix + '.png')], bgcolor="black",
-        title=None, height=s.meta['height']*.7) + review_bib,
+        [os.path.join(figpath, 'figure_' + suffix + '.png')], bgcolor="black",
+    title=None, height=s.meta['height']*.85),
+           notes="""
+
+discussion...
+
+""")
+CNN_ref = '(from <a href="http://cs231n.github.io/convolutional-networks/">http://cs231n.github.io/convolutional-networks/</a>)'
+s.add_slide(content=s.content_figures(
+    ['http://cs231n.github.io/assets/cnn/depthcol.jpeg'], bgcolor="black",
+title=None, height=s.meta['height']*.85) + CNN_ref,
+       notes="""
+
+discussion...
+
+""")
+
+for suffix in ['CNN']:
+    s.add_slide(content=s.content_figures(
+        [os.path.join(figpath, 'figure_' + suffix + '.png')], bgcolor="black",
+    title=None, height=s.meta['height']*.85),
            notes="""
 
 discussion...
 
 """)
 
-figpath = os.path.join(home,  'quantic/2016_science/2017-01-19_BICV_sparse/figures/')
-figpath = os.path.join(home,  'pool/science/BICV/SHL_scripts/')
-figpath = os.path.join(home,  'Desktop/2017-01_LACONEU/figures/')
-figpath_ssc = os.path.join(home,  'science/VB_These/2017-10-13-DD_Poster')
+figpath = 'figures'
 
-for suffix in ['_nohomeo', '_homeo']:
-
+for suffix in ['1', '2a', '2b']:
     s.add_slide(content=s.content_figures(
-        [os.path.join(figpath, 'fig_laughlin.png'), os.path.join(figpath_ssc, 'ssc' + suffix + '.png')], bgcolor="black",
-        title=None, list_of_weights=[1., 2.], height=s.meta['height']*.85) + review_bib,
-       notes="""
+        [os.path.join(figpath, 'SDPC_' + suffix + '.png')], bgcolor="black",
+    title=None, height=s.meta['height']*.85),
+           notes="""
 
-
+discussion...
 
 """)
 
+
+s.add_slide(content=s.content_figures(
+    [os.path.join(figpath, 'SDPC_' + suffix + '.png') for suffix in ['3', '4']],
+    bgcolor="black",
+    title=None, height=s.meta['height']*.85),
+       notes="""
+
+discussion...
+
+""")
 s.close_section()
 
 ###############################################################################
