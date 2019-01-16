@@ -1,7 +1,6 @@
-# 2019-01-14_LACONEU : Modelling spiking neural networks using Brian, Nest and pyNN
+# 2019-01-16_LACONEU : Efficient coding of visual information in neural computations
 
  * see http://laconeu.cl/wp-content/uploads/2019/01/program.pdf
-  * full info @ https://invibe.net/LaurentPerrinet/Presentations/2019-01-14_LACONEU
+  * full info @ https://invibe.net/LaurentPerrinet/Presentations/2019-01-16_LACONEU
 
-   * slides @ https://blog.invibe.net/files/2019-01-14_LACONEU.html
-# 2019-01-16_LACONEU
+   * slides @ https://blog.invibe.net/files/2019-01-16_LACONEU.html

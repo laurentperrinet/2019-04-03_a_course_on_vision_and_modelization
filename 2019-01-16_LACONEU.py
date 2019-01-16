@@ -43,18 +43,10 @@ meta = dict(
  # width= 1280, #1600,
  # height= 1024, #1000,
  margin= 0.1618,#
- #reveal_path = 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/',
- #reveal_path='http://cdn.jsdelivr.net/reveal.js/3.7.0/',
  reveal_path='https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.7.0/',
- #theme='night',
- #theme='sky',
- #theme='black',
- #theme='White',
  theme='simple',
- #theme='White',
- bgcolor = "white",
+ bgcolor="white",
  author='Laurent Perrinet, INT',
- #author_link='Chloé Pasturel, Laurent Perrinet and Anna Montagnini',
  author_link='<a href="http://invibe.net">Laurent Perrinet</a>',
  short_title='Efficient coding of visual information in neural computations',
  title='Efficient coding of visual information in neural computations',
@@ -62,11 +54,9 @@ meta = dict(
  short_conference='LACONEU 2019',
  conference='LACONEU 2019: 5th Latin-American Summer School in Computational Neuroscience',
  location='Valparaiso (Chile)',
- YYYY = YYYY,
- MM = MM,
- DD = DD,
- tag = tag,
- url = 'http://invibe.net/LaurentPerrinet/Presentations/' + tag,
+ YYYY=YYYY, MM=MM, DD=DD,
+ tag=tag,
+ url='http://invibe.net/LaurentPerrinet/Presentations/' + tag,
  abstract="""
 """,
 wiki_extras="""
@@ -76,10 +66,9 @@ wiki_extras="""
 <<Include(AnrHorizontalV1Aknow)>>
 ----
 TagYear{YY} TagTalks [[TagAnrHorizontalV1]]""".format(YY=str(YYYY)[-2:]),
-sections= ['Efficiency, vision and neurons',
+sections=['Efficiency, vision and neurons',
             'Sparse coding',
-            'Sparse Hebbian Learning',
-            ]
+            'Sparse Hebbian Learning']
 )
 
 # https://pythonhosted.org/PyQRCode/rendering.html
@@ -99,7 +88,7 @@ print(meta['sections'])
 s = Slides(meta)
 
 ###############################################################################
-## 🏄🏄🏄🏄🏄🏄🏄🏄 intro  🏄🏄🏄🏄🏄🏄🏄🏄
+# 🏄🏄🏄🏄🏄🏄🏄🏄 intro  🏄🏄🏄🏄🏄🏄🏄🏄
 ###############################################################################
 i_section = 0
 s.open_section()
@@ -149,14 +138,15 @@ s.add_slide(content=intro,
             notes="""
 * (AUTHOR) Hello, I am Laurent Perrinet from the Institute of Neurosciences of
 la Timone in Marseille, a joint unit from the CNRS and the AMU
-* (OBJECTIVE) in this short talk, I will be focus in highlighting
-some key challenges in modelizing visual perception and
+* (OBJECTIVE) in this talk, I will be focus in highlighting
+some key challenges in understanding visual perception
+in terams of efficient coding
+using modelization and neural data and
 * (ACKNO) this endeavour involves different techniques and tools ...
 From the head on, I wish to thanks people who collaborated  and in particular ..
-  mostly funded by the ANR bala V1
-(hansel wreeiswijk nowak) + ANR TRAJECTORY (o marrre bruno cessac palacios )
+  mostly funded by the ANR horizontal V1
+(fregnac chavane) + ANR TRAJECTORY (o marrre bruno cessac palacios )
 + LONDON (Jim Bednar, Friston)
-great thanks to Stéphane for proposing me to present this work
 * (SHOW TITLE) I am interested in the link
 between the neural code and the structure of the world.
 in particular, for vision, I am researching
@@ -204,8 +194,31 @@ s.add_slide(content="""
 
 """)
 
+droplets_bib = s.content_bib('Ravello, Escobar, Palacios, LP', '2019', 'in prep', url=None)
+figpath = os.path.join(home, 'science/DropLets/figures/')
+s.add_slide(content=s.content_figures(
+                    [os.path.join(figpath, 'retina_sparseness_droplets.png'),
+                     os.path.join(figpath, 'PSTH11.png'),
+                     os.path.join(figpath, 'PSTH25.png')],
+                    title=None, height=s.meta['height']*.85)+droplets_bib,
+            notes="""
+figure 3 of droplets
 
-figpath = os.path.join(home, 'quantic/2016_science/2014-04-17_HDR/figures/')
+""")
+
+figpath = os.path.join(home,  'RetinaCloudsSparse/2015-11-13_droplets/2015-11-13_1310_full_files/droplets_full')
+for fname in ['00012_droplets_i_sparse_3_n_sf_8.mp4', '00006_droplets_i_sparse_5_n_sf_1.mp4']:
+    s.add_slide(content="""
+        <video controls loop width=99%/>
+          <source type="video/mp4" src="{}">
+        </video>
+        """.format(s.embed_video(os.path.join(figpath, fname))),
+                notes="""
+
+
+    """)
+
+figpath = os.path.join(home, 'pool/science/PerrinetBednar15/talk/')
 # anatomical
 s.add_slide(content=s.content_figures(
         [os.path.join(figpath, 'Bosking97Fig4.jpg')], title=None,
@@ -263,15 +276,14 @@ s.open_section()
 title = meta['sections'][i_section]
 s.add_slide_outline(i_section)
 
-figpath = os.path.join(home,  'quantic/2016_science/2014-04-17_HDR/figures/')
-figpath = os.path.join(home,  'quantic/2016_science/2017-01-19_BICV_sparse/figures/')
+figpath = os.path.join(home,  'Desktop/2017-01_LACONEU/figures/')
 s.add_slide(content="""
     <video controls loop width=99%/>
       <source type="video/mp4" src="{}">
     </video>
     """.format(s.embed_video(os.path.join('figures', 'MP.mp4'))))
 
-figpath = os.path.join(home,  'quantic/2016_science/2016-12-XX_PerrinetBednar15/figures/')
+figpath = os.path.join(home, 'pool/science/PerrinetBednar15/figures/')
 srep_bib = s.content_bib("LP and Bednar", "2015", 'Scientific Reports, <a href="http://www.nature.com/articles/srep11400">http://www.nature.com/articles/srep11400</a>')
 s.add_slide(content=s.content_figures(
         [os.path.join(figpath, 'figure_synthesis.jpg')], bgcolor="white",
@@ -353,7 +365,7 @@ for suffix in ['_nohomeo', '_homeo']:
         title=None, list_of_weights=[1., 2.], height=s.meta['height']*.85) + review_bib,
        notes="""
 
-discussion...
+
 
 """)
 
