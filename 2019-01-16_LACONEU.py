@@ -122,22 +122,17 @@ intro += """
 <h4><a href="{conference_url}">{conference}</a>, {DD}/{MM}/{YYYY} </h4>
 """.format(**meta)
 
-s.add_slide(content=intro,
-            notes="""
-* (AUTHOR) Hi, I am Laurent Perrinet from (LOGO) the Institute de Neurosciences de la Timone in Marseille, a joint unit from the CNRS and AMU. Using computational models, I am investigating the link between the efficiency of behavioural responses in vision, their underlying neural code and their adaptation to the structure of the world.
+s.hide_slide(content=intro)
 
-* (SHOW TITLE - THEME) = mon but ici est de montrer quelques aspects de mon projet de recherche et en particulier des echos de ces tracaux que nous avons realiséavec Etienne Rey
-please interrupt
-
-""")
-
-s.add_slide(content=s.content_figures([figname], cell_bgcolor=meta['bgcolor'], height=s.meta['height']*height_ratio) + '<BR><a href="{url}"> {url} </a>'.format(url=meta['url']),
+s.hide_slide(content=s.content_figures([figname], cell_bgcolor=meta['bgcolor'], height=s.meta['height']*height_ratio) + '<BR><a href="{url}"> {url} </a>'.format(url=meta['url']),
             notes=" All the material is available online - please flash this QRcode this leads to a page with links to further references and code ")
 
 s.add_slide(content=intro,
             notes="""
 * (AUTHOR) Hello, I am Laurent Perrinet from the Institute of Neurosciences of
-la Timone in Marseille, a joint unit from the CNRS and the AMU
+la Timone in Marseille, a joint unit from the CNRS and the
+please interrupt
+
 * (OBJECTIVE) in this talk, I will be focus in highlighting
 some key challenges in understanding visual perception
 in terams of efficient coding
@@ -163,9 +158,8 @@ so what is visual perception?
 
 review_bib = s.content_bib("LP", "2015", '"Sparse models" in <a href="http://invibe.net/LaurentPerrinet/Publications/Perrinet15bicv">Biologically Inspired Computer Vision</a>')
 
-figpath = os.path.join(home,  'pool/science/BICV/bicv.github.io/images')
-s.add_slide(image_fname=os.path.join(figpath, 'bicv_banner.jpg'),
-            content=s.content_figures(
+figpath = os.path.join(home,  'pool/blog/bicv.github.io/images')
+s.add_slide(content=s.content_figures(
                     [os.path.join(figpath, 'bicv_cover.jpg')],
                     title=None, height=s.meta['height']*.85)+review_bib,
             notes="""
@@ -182,34 +176,23 @@ information, and human contour detection and grouping performance is well
 predicted by what is coined an "association field" (Field et al., 1993)...
 """)
 
+#
+# figpath = os.path.join(home,  'pool/science/RetinaClouds/')
+# s.add_slide(content="""
+#     <video controls loop width=99%/>
+#       <source type="video/mp4" src="{}">
+#     </video>
+#     """.format(s.embed_video(os.path.join(figpath, '2016-09-14_droplets_round2/data_cache/2016-09-14_frames/00004_droplets_i_sparse_0_seed_1973.mp4'))),
+#             notes="""
+#
+#
+# """)
 
-figpath = os.path.join(home,  'pool/science/RetinaClouds/')
-s.add_slide(content="""
-    <video controls loop width=99%/>
-      <source type="video/mp4" src="{}">
-    </video>
-    """.format(s.embed_video(os.path.join(figpath, '2016-09-14_droplets_round2/data_cache/2016-09-14_frames/00004_droplets_i_sparse_0_seed_1973.mp4'))),
-            notes="""
 
-
-""")
-
-droplets_bib = s.content_bib('Ravello, Escobar, Palacios, LP', '2019', 'in prep', url=None)
-figpath = os.path.join(home, 'science/DropLets/figures/')
-s.add_slide(content=s.content_figures(
-                    [os.path.join(figpath, 'retina_sparseness_droplets.png'),
-                     os.path.join(figpath, 'PSTH11.png'),
-                     os.path.join(figpath, 'PSTH25.png')],
-                    title=None, height=s.meta['height']*.85)+droplets_bib,
-            notes="""
-figure 3 of droplets
-
-""")
-
-figpath = os.path.join(home,  'RetinaCloudsSparse/2015-11-13_droplets/2015-11-13_1310_full_files/droplets_full')
+figpath = os.path.join(home,  'pool/science/RetinaCloudsSparse/2015-11-13_droplets/2015-11-13_1310_full_files/droplets_full')
 for fname in ['00012_droplets_i_sparse_3_n_sf_8.mp4', '00006_droplets_i_sparse_5_n_sf_1.mp4']:
     s.add_slide(content="""
-        <video controls loop width=99%/>
+        <video controls loop width=60%/>
           <source type="video/mp4" src="{}">
         </video>
         """.format(s.embed_video(os.path.join(figpath, fname))),
@@ -217,6 +200,19 @@ for fname in ['00012_droplets_i_sparse_3_n_sf_8.mp4', '00006_droplets_i_sparse_5
 
 
     """)
+
+
+droplets_bib = s.content_bib('Ravello, Escobar, Palacios, LP', '2019', 'in prep', url=None)
+figpath = os.path.join(home, 'science/DropLets/figures/')
+s.add_slide(content=s.content_figures(
+                    [os.path.join(figpath, 'retina_sparseness_droplets.png'),
+                     os.path.join(figpath, 'PSTH11.png'),
+                     os.path.join(figpath, 'PSTH25.png')], fragment=True, transpose=True,
+                    title=None, height=s.meta['height']*.7)+droplets_bib,
+            notes="""
+figure 3 of droplets
+
+""")
 
 figpath = os.path.join(home, 'pool/science/PerrinetBednar15/talk/')
 # anatomical
@@ -281,7 +277,7 @@ s.add_slide(content="""
     <video controls loop width=99%/>
       <source type="video/mp4" src="{}">
     </video>
-    """.format(s.embed_video(os.path.join('figures', 'MP.mp4'))))
+    """.format(s.embed_video(os.path.join(figpath, 'MP.mp4'))))
 
 figpath = os.path.join(home, 'pool/science/PerrinetBednar15/figures/')
 srep_bib = s.content_bib("LP and Bednar", "2015", 'Scientific Reports, <a href="http://www.nature.com/articles/srep11400">http://www.nature.com/articles/srep11400</a>')
@@ -338,15 +334,15 @@ title = meta['sections'][i_section]
 s.add_slide_outline(i_section)
 
 
-figpath = os.path.join(home,  'quantic/2016_science/2014-04-17_HDR/figures/')
+figpath = os.path.join(home,  'Desktop/2017-01_LACONEU/figures/')
 s.add_slide(content="""
     <video controls loop width=99%/>
       <source type="video/mp4" src="{}">
     </video>
-    """.format(s.embed_video(os.path.join(figpath, 'ssc.mp4'))))
+    """.format(s.embed_video(os.path.join('figures', 'ssc.mp4'))))
 for suffix in ['_a', '_ab', '']:
     s.add_slide(content=s.content_figures(
-        [os.path.join('figures', 'figure_sparsenet' + suffix + '.png')], bgcolor="black",
+        [os.path.join(figpath, 'figure_sparsenet' + suffix + '.png')], bgcolor="black",
         title=None, height=s.meta['height']*.7) + review_bib,
            notes="""
 
@@ -356,12 +352,13 @@ discussion...
 
 figpath = os.path.join(home,  'quantic/2016_science/2017-01-19_BICV_sparse/figures/')
 figpath = os.path.join(home,  'pool/science/BICV/SHL_scripts/')
-
+figpath = os.path.join(home,  'Desktop/2017-01_LACONEU/figures/')
+figpath_ssc = os.path.join(home,  'science/VB_These/2017-10-13-DD_Poster')
 
 for suffix in ['_nohomeo', '_homeo']:
 
     s.add_slide(content=s.content_figures(
-        [os.path.join('figures', 'fig_laughlin.png'), os.path.join(figpath, 'ssc' + suffix + '.png')], bgcolor="black",
+        [os.path.join(figpath, 'fig_laughlin.png'), os.path.join(figpath_ssc, 'ssc' + suffix + '.png')], bgcolor="black",
         title=None, list_of_weights=[1., 2.], height=s.meta['height']*.85) + review_bib,
        notes="""
 
@@ -369,37 +366,6 @@ for suffix in ['_nohomeo', '_homeo']:
 
 """)
 
-s.close_section()
-
-i_section += 1
-###############################################################################
-# 🏄🏄🏄🏄🏄🏄🏄🏄 STDP - 15''  🏄🏄🏄🏄🏄🏄🏄🏄
-###############################################################################
-###############################################################################
-
-s.open_section()
-title = meta['sections'][i_section]
-s.add_slide_outline(i_section)
-s.add_slide(content=s.content_figures(
-        [os.path.join(figpath_talk, "fig_sup_stdps.png"), ], bgcolor="black",
-        title=None, height=s.meta['height']*.8),
-          notes="""
-
-#  /Users/laurentperrinet/nextcloud/RTC/2019-01-11\ rapport\ M2A\ HL\ 5bf69490a5705a15960895d6/Figures/fig_sup_stdps.pdf
-
-""")
-
-s.add_slide(content=s.content_figures(
-        [os.path.join(figpath_talk, "hugoladret_InternshipM2_FINAL_1_couche.png"), ], bgcolor="black",
-        title=None, height=s.meta['height']*.8),
-          notes="""
-
-# https://github.com/hugoladret/InternshipM2/blob/master/FINAL_1_couche.ipynb
-
-""")
-
-
-# FINAL_L2_noshift.pdf
 s.close_section()
 
 ###############################################################################
