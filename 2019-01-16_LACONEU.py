@@ -384,7 +384,7 @@ figpath = os.path.join(home, 'science/DropLets/figures/')
 for suffix in ['a', 'b']:
     s.add_slide(content=s.content_figures(
                     [os.path.join(figpath, 'retina_sparseness_droplets.png'),
-                     os.path.join(figpath_talk, 'Droplets_3' + suffix + '.png')], fragment=False, transpose=True,
+                     os.path.join(figpath_talk, 'Droplets_3_' + suffix + '.png')], fragment=False, transpose=True,
                     title=None, height=s.meta['height']*.75)+droplets_bib,
             notes="""
 figure 3 of droplets
