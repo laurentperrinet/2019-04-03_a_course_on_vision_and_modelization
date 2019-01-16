@@ -161,7 +161,8 @@ s.add_slide(content="""
     <video controls loop width=60%/>
       <source type="video/mp4" src="{}">
     </video>
-    """.format(s.embed_video(os.path.join(figpath, 'MP.mp4'))),
+    """.format(#'figures/MP.mp4'), #
+                s.embed_video(os.path.join(figpath, 'MP.mp4'))),
             notes="""
 ... this video shows this intuition in a quantitative way. from a natural image,
 we extracted independent sources as individual edges at different scales and
@@ -303,7 +304,7 @@ s.add_slide(content="""
     <video controls loop width=85%/>
       <source type="video/mp4" src="{}">
     </video>
-    """.format(s.embed_video(os.path.join(figpath_talk, 'v1_tiger.mp4'))),
+    """.format('figures/v1_tiger.mp4'), #s.embed_video(os.path.join(figpath,     """.format(s.embed_video(os.path.join(figpath_talk, 'v1_tiger.mp4'))),
 notes="""
 same procedure with retinal filters (scale, no orientation) = sparseness
 """)
@@ -387,30 +388,8 @@ s.add_slide(content="""
     <video controls loop width=60%/>
       <source type="video/mp4" src="{}">
     </video>
-    """.format(s.embed_video(os.path.join('figures', 'ssc.mp4'))))
+    """.format('figures/ssc.mp4')) #s.embed_video(os.path.join(figpath,         s.embed_video(os.path.join('figures', 'ssc.mp4'))))
 #
-# for suffix in ['_a', '_ab', '']:
-#     s.add_slide(content=s.content_figures(
-#         [os.path.join(figpath, 'figure_sparsenet' + suffix + '.png')], bgcolor="black",
-#         title=None, height=s.meta['height']*.7) + review_bib,
-#            notes="""
-#
-# discussion...
-#
-# """)
-# figpath = os.path.join(home,  'quantic/2016_science/2017-01-19_BICV_sparse/figures/')
-# figpath = os.path.join(home,  'pool/science/BICV/SHL_scripts/')
-# figpath = os.path.join(home,  'Desktop/2017-01_LACONEU/figures/')
-# figpath_ssc = os.path.join(home,  'science/VB_These/2017-10-13-DD_Poster')
-#
-# for suffix in ['_nohomeo', '_homeo']:
-#
-#     s.add_slide(content=s.content_figures(
-#         [os.path.join(figpath, 'fig_laughlin.png'), os.path.join(figpath_ssc, 'ssc' + suffix + '.png')], bgcolor="black",
-#         title=None, list_of_weights=[1., 2.], height=s.meta['height']*.85),
-#        notes="""
-#
-# """)
 
 figpath = os.path.join(home, 'science/ABC/HULK/')
 
