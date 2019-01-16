@@ -270,6 +270,27 @@ than that -
 * TRANSITION : my goal here will be to tackle this problem at different levels:
 """)
 
+
+
+#Jens Kremkow, Laurent U Perrinet, Cyril Monier, Jose-Manuel Alonso, Ad Aertsen, Yves Fregnac, Guillaume S Masson. Push-pull receptive field organization and synaptic depression: Mechanisms for reliably encoding naturalistic stimuli in V1, URL URL2 URL3 . Frontiers in Neural Circuits, 2016
+
+jens_bib = s.content_bib("Kremkow, LP, Monier, Alonso, Aertsen, Fregnac, Masson", "2016", 'Push-pull receptive field organization and synaptic depression: Mechanisms for reliably encoding naturalistic stimuli in V1', url='http://invibe.net/LaurentPerrinet/Publications/Kremkow16')
+jens_url = 'https://www.frontiersin.org/files/Articles/190318/fncir-10-00037-HTML/image_m/'
+s.add_slide(content=s.content_figures(
+        [jens_url + 'fncir-10-00037-g001.jpg'], bgcolor="white",
+        title=None, height=s.meta['height']*.8) + jens_bib,
+           notes="""
+
+""")
+
+# https://www.frontiersin.org/files/Articles/190318/fncir-10-00037-HTML/image_m/fncir-10-00037-g004.jpg
+# https://www.frontiersin.org/files/Articles/190318/fncir-10-00037-HTML/image_m/fncir-10-00037-g005.jpg
+s.add_slide(content=s.content_figures(
+        [jens_url + 'fncir-10-00037-g004.jpg', jens_url + 'fncir-10-00037-g005.jpg'], bgcolor="white", fragment=True,
+        title=None, height=s.meta['height']*.8) + jens_bib,
+           notes="""
+
+""")
 s.close_section()
 
 i_section += 1
