@@ -130,18 +130,20 @@ s.hide_slide(content=s.content_figures([figname], cell_bgcolor=meta['bgcolor'], 
 s.add_slide(content=intro,
             notes="""
 * (AUTHOR) Hello, I am Laurent Perrinet from the Institute of Neurosciences of
-la Timone in Marseille, a joint unit from the CNRS and the
-please interrupt
+la Timone in Marseille, a joint unit from the CNRS and the AMU
 
 * (OBJECTIVE) in this talk, I will be focus in highlighting
 some key challenges in understanding visual perception
 in terams of efficient coding
-using modelization and neural data and
+using modelization and neural data
+* please interrupt
+
 * (ACKNO) this endeavour involves different techniques and tools ...
 From the head on, I wish to thanks people who collaborated  and in particular ..
   mostly funded by the ANR horizontal V1
 (fregnac chavane) + ANR TRAJECTORY (o marrre bruno cessac palacios )
 + LONDON (Jim Bednar, Friston)
+
 * (SHOW TITLE) I am interested in the link
 between the neural code and the structure of the world.
 in particular, for vision, I am researching
@@ -152,7 +154,9 @@ of low-level visual areas (V1) and the structures of natural scenes,
 that is of the images that hit the retina and which are
 relevant to visual perception in general.
 
-so what is visual perception?
+so what is vision efficient? in particular if we look around us,
+images are formed by a relatively low number of features, which are arranged
+according to prototypical structures - lines, curves, contours
 """)
 
 
@@ -163,26 +167,17 @@ s.add_slide(content="""
     <video controls loop width=60%/>
       <source type="video/mp4" src="{}">
     </video>
-    """.format(s.embed_video(os.path.join(figpath, 'MP.mp4'))))
+    """.format(s.embed_video(os.path.join(figpath, 'MP.mp4'))),
+            notes="""
+... this video shows this intuition in a quantitative way. from a natural image,
+we extracted independent sources as individual edges at different scales and
+orientations
 
-#
-# figpath = os.path.join(home,  'pool/blog/bicv.github.io/images')
-# s.add_slide(content=s.content_figures(
-#                     [os.path.join(figpath, 'bicv_cover.jpg')],
-#                     title=None, height=s.meta['height']*.85)+review_bib,
-#             notes="""
-# ... by linking to the statistics of natural images:
-#
-# * (natural) For instance, oriented edges that constitute images of natural scenes
-# tend to be aligned in co-linear or co-circular arrangements, such as when
-# 💠 you follow the contours of these boulders: lines and smooth curves
-# are more common than other possible arrangements of edges. See for example
-# the work of Mariano Sigman on co-circularity in natural images (see Sigman, 2001).
-#
-# * (neural) The visual system appears to take advantage of this prior
-# information, and human contour detection and grouping performance is well
-# predicted by what is coined an "association field" (Field et al., 1993)...
-# """)
+when we reconstruct this image frame by frame (see N)
+we can quickly recognize the image
+
+natural images are sparse
+""")
 
 #
 # figpath = os.path.join(home,  'pool/science/RetinaClouds/')
@@ -203,6 +198,25 @@ for i in [1, 2, 5]:
         [os.path.join(figpath_talk, 'Olshausen_'+ str(i) + '.png')], bgcolor="white",
         title=None, height=s.meta['height']*.85) + ols_bib,
            notes="""
+a seminal idea is proposed by Olshausen:
+* this may be formalized as an inference problem:
+
+edges are different sources, which are known to be sparse:
+by mixing these sources one forms the image (transparency hypothesis)
+
+the sparseness is characterized by the pdf of the sources coefficients
+
+* this inference problem is an inverse problem:
+
+* while this problem may be hard to solve, this may be approached using
+a (conjugate) gradient descent which has a nice implementation in terms of
+neural networks
+
+I wish to point here to an essential feature compared to classical feed-forward
+networks: you can not do the inference in one single shot in general;
+you need a recurrent / recursive network  (see arrow) and this is precisely
+a possible function for one of the most numerous type of synapses: short-ranges
+lateral interactions
 
 """)
 
@@ -215,7 +229,8 @@ s.add_slide(content=s.content_figures(
             height=s.meta['height']*.85) +
             s.content_bib("Bosking et al.", "1997", " Journal of Neuroscience"),
             notes="""
-... is the set of long-range lateral connections between neurons, which could
+in the primary visual cortex for instance,
+ the set of long-range lateral connections between neurons, which could
 act to facilitate detection of contours matching the association field, and/or
 inhibit detection of other contours. To fill this role, the lateral connections
 would need to be orientation specific and aligned along contours, * (colin) and
@@ -254,48 +269,7 @@ inexistent on a the scale of the area... 1:  Hunt & Goodhill have reinterpreted 
 than that -
 * TRANSITION : my goal here will be to tackle this problem at different levels:
 """)
-#
-# figpath = os.path.join(home, 'pool/science/PerrinetBednar15/figures/')
-# srep_bib = s.content_bib("LP and Bednar", "2015", 'Scientific Reports, <a href="http://www.nature.com/articles/srep11400">http://www.nature.com/articles/srep11400</a>')
-# s.add_slide(content=s.content_figures(
-#         [os.path.join(figpath, 'figure_synthesis.png')], bgcolor="white",
-#         title=None, height=s.meta['height']*.85) + srep_bib,
-#            notes="""
-#
-# We first extracted the edges from images using a scale-space analysis (all OSS
-# on github) The histogram was computed as a a 4-dimensional function of
-# distance, (symmetrical) azimuth $\psi$, difference of orientation $\theta$ and
-# ratio of scale. ... second-order statistics are efficiently computed by using a
-# the algorithm from Geisler et al. (2001), with a more general edge extraction
-# algorithm that uses sparse coding %to avoid multiple responses to a single
-# edge.  * ... Collinearity and co-circularity results for natural images
-# replicated qualitatively the results from Geisler et al. (2001), confirming
-# that prior information about continuations appeared consistently in natural
-# images.
-#
-# Probability distribution function of "chevrons" * (angles)  By computing
-# measures of the independence of the different variables, we found that the
-# probability density function of the second-order statistics of edges factorizes
-# with on one side distance and scale and on the other side the 2 angles.  The
-# first component proved to be quite similar across both classes and the greater
-# difference is seen for different angle configuration. As it can be reduced to 2
-# dimensions, we can plot the full probability as shown here by different
-# contrast values assigned to all possible chevrons configurations, for all
-# possible "azimuth" values $\psi$ on the horizontal axis and difference of
-# orientation $\theta$ on the vertical axis. Such a plot most strikingly shows
-# the difference between these 2 classes.  one issue now that we can show the 2nd
-# order statistics is to know if it would be possible to quantify such
-# difference...
-#
-# * (colin)  let's first replicate the result from Geisler by showing that
-# relative to a given edge (segment in the center), what is the Here I show for
-# each distance and angle the most probable difference of angle, showing that
-# collinear and parallel edges predominate.  (cocir) a similar pattern is observed the
-# cocircular plot. it reproduces the results from Geisler on natural images, but
-# laboratory environment shows a strong bias to colinearity. If we believe
-# bosking link, obviously, this should have a consequence on antomy. thus we test
-# whether these AF were different across different image classes.
-# """)
+
 s.close_section()
 
 i_section += 1
@@ -305,7 +279,11 @@ i_section += 1
 ###############################################################################
 s.open_section()
 title = meta['sections'][i_section]
-s.add_slide_outline(i_section)
+s.add_slide_outline(i_section,
+notes="""
+one can go one step before the cortex and ask the same question in the retina
+are the same process present ?
+""")
 
 # s.add_slide(content=s.content_figures(
 #         [os.path.join(figpath_talk, 'Olshausen_5.png')], bgcolor="white",
@@ -319,7 +297,10 @@ s.add_slide(content="""
     <video controls loop width=85%/>
       <source type="video/mp4" src="{}">
     </video>
-    """.format(s.embed_video(os.path.join(figpath_talk, 'v1_tiger.mp4'))))
+    """.format(s.embed_video(os.path.join(figpath_talk, 'v1_tiger.mp4'))),
+notes="""
+same procedure with retinal filters (scale, no orientation) = sparseness
+""")
 
 
 droplets_bib = s.content_bib('Ravello, Escobar, Palacios, LP', '2019', 'in prep', url=None)
@@ -331,15 +312,27 @@ figure 1 of droplets
 
 """)
 
+
+ols_bib = s.content_bib("Olshausen and Field", "1997", 'Sparse coding with an overcomplete basis set: A strategy employed by V1?')
+for i in [1, 2, 5]:
+    s.add_slide(content=s.content_figures(
+        [os.path.join(figpath_talk, 'Olshausen_'+ str(i) + '.png')], bgcolor="white",
+        title=None, height=s.meta['height']*.85) + ols_bib,
+           notes="""
+since we assume the retina would invert this model, let's use the forward model
+to generate stimuli = droplets
+
+""")
+
 figpath = os.path.join(home,  'pool/science/RetinaCloudsSparse/2015-11-13_droplets/2015-11-13_1310_full_files/droplets_full')
-for fname in ['00006_droplets_i_sparse_5_n_sf_1.mp4', '00012_droplets_i_sparse_3_n_sf_8.mp4', ]:
+for fname in ['00012_droplets_i_sparse_3_n_sf_8.mp4', '00006_droplets_i_sparse_5_n_sf_1.mp4', ]:
     s.add_slide(content="""
         <video controls loop width=60%/>
           <source type="video/mp4" src="{}">
         </video>
         """.format(s.embed_video(os.path.join(figpath, fname))),
                 notes="""
-
+very sparse to very dense
 
     """)
 
@@ -356,6 +349,14 @@ figure 3 of droplets
 
 """)
 
+s.add_slide(content=s.content_figures(
+                    ['figures/Droplets_5.png'],
+                    title=None, height=s.meta['height']*.7)+droplets_bib,
+            notes="""
+figure 5 of droplets
+
+""")
+
 s.close_section()
 
 i_section += 1
@@ -366,8 +367,15 @@ i_section += 1
 
 s.open_section()
 title = meta['sections'][i_section]
-s.add_slide_outline(i_section)
+s.add_slide_outline(i_section,
+notes="""
+let's move to the second part : learning
 
+the main goal of Olshasuen was not only sparse coding but
+the fact that using the sparse code, a simple linear hebbian learning allows
+to separate independent sources
+
+""")
 
 figpath = os.path.join(home, 'Desktop/2017-01_LACONEU/figures/')
 s.add_slide(content="""
@@ -406,8 +414,9 @@ for suffix in ['map', 'HAP']:
         [os.path.join(figpath, 'figure_' + suffix + '.png')], bgcolor="black",
     title=None, height=s.meta['height']*.85),
            notes="""
+a contribution we made to this algorithm is homeostasis
 
-discussion...
+
 
 """)
 CNN_ref = '(from <a href="http://cs231n.github.io/convolutional-networks/">http://cs231n.github.io/convolutional-networks/</a>)'
@@ -416,7 +425,7 @@ s.add_slide(content=s.content_figures(
 title=None, height=s.meta['height']*.85) + CNN_ref,
        notes="""
 
-discussion...
+this can be extended to a convolutional neural networks
 
 """)
 
@@ -438,7 +447,8 @@ for suffix in ['1', '2a', '2b']:
     title=None, height=s.meta['height']*.85),
            notes="""
 
-discussion...
+Multi-layered unsupervised Learning
+
 
 """)
 
@@ -449,8 +459,7 @@ s.add_slide(content=s.content_figures(
     title=None, height=s.meta['height']*.85),
        notes="""
 
-discussion...
-
+allows for a better classification as here for MNIST digits
 """)
 s.close_section()
 
@@ -461,6 +470,8 @@ s.close_section()
 s.open_section()
 s.add_slide(content=intro,
             notes="""
+
+
 * Thanks for your attention!
 """)
 s.close_section()
