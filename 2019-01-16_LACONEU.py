@@ -486,8 +486,8 @@ Multi-layered unsupervised Learning
 
 s.add_slide(content=s.content_figures(
     [os.path.join(figpath, 'SDPC_' + suffix + '.png') for suffix in ['3', '4']],
-    bgcolor="black",
-    title=None, height=s.meta['height']*.85),
+    bgcolor="black", fragment=True,
+    title=None, height=s.meta['height']*.61803),
        notes="""
 
 allows for a better classification as here for MNIST digits
