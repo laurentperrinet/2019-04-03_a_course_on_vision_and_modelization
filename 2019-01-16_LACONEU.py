@@ -436,7 +436,7 @@ Multi-layered unsupervised Learning
 
 
 s.add_slide(content=s.content_figures(
-    [os.path.join(figpath, 'SDPC_' + suffix + '.png') for suffix in ['3', '4']],
+    [os.path.join(figpath_talk, 'SDPC_' + suffix + '.png') for suffix in ['3', '4']],
     bgcolor="black", fragment=True,
     title=None, embed=False, height=s.meta['height']*.75),
        notes="""
