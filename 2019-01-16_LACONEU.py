@@ -9,12 +9,6 @@ import os
 home = os.environ['HOME']
 figpath_talk = 'figures'
 figpath_slides = os.path.join(home, 'nextcloud/libs/slides.py/figures/')
-# figpath_etienne = os.path.join(home, 'pool/EtienneRey')
-# figpath_sparse = os.path.join(home, 'pool/science/Perrinet2015BICV_sparse/figures')
-# figpath_bednar = os.path.join(home, 'pool/science/PerrinetBednar15/talk')
-# figpath_bednar2 = os.path.join(home, 'pool/science/PerrinetBednar15/figures')
-# figpath_méjanes = os.path.join(home, 'pool/blog/invibe/output/files/2016-04-28_méjanes/figures')
-# figpath_FLE = os.path.join(home, 'ownCNRS/2018-03-26_cours-NeuroComp_FEP/figures')
 #
 import sys
 print(sys.argv)
@@ -179,23 +173,10 @@ we can quickly recognize the image
 natural images are sparse
 """)
 
-#
-# figpath = os.path.join(home,  'pool/science/RetinaClouds/')
-# s.add_slide(content="""
-#     <video controls loop width=99%/>
-#       <source type="video/mp4" src="{}">
-#     </video>
-#     """.format(s.embed_video(os.path.join(figpath, '2016-09-14_droplets_round2/data_cache/2016-09-14_frames/00004_droplets_i_sparse_0_seed_1973.mp4'))),
-#             notes="""
-#
-#
-# """)
-
-
 ols_bib = s.content_bib("Olshausen and Field", "1997", 'Sparse coding with an overcomplete basis set: A strategy employed by V1?')
 for i in [1, 2, 5]:
     s.add_slide(content=s.content_figures(
-        [os.path.join(figpath_talk, 'Olshausen_'+ str(i) + '.png')], bgcolor="white",
+        [os.path.join(figpath_talk, 'Olshausen_'+ str(i) + '.png')], bgcolor="white", embed=False,
         title=None, height=s.meta['height']*.85) + ols_bib,
            notes="""
 a seminal idea is proposed by Olshausen:
@@ -280,7 +261,7 @@ jens_url = 'figures/'
 for l in ['a', 'b', '']:
     s.add_slide(content=s.content_figures(
         [jens_url + 'fncir-10-00037-g001' + l + '.jpg'], bgcolor="white",
-        title=None, height=s.meta['height']*.8) + jens_bib,
+        title=None, embed=False, height=s.meta['height']*.8) + jens_bib,
            notes="""
 
 """)
@@ -289,7 +270,7 @@ for l in ['a', 'b', '']:
 # https://www.frontiersin.org/files/Articles/190318/fncir-10-00037-HTML/image_m/fncir-10-00037-g005.jpg
 s.add_slide(content=s.content_figures(
         [jens_url + 'fncir-10-00037-g004.jpg', jens_url + 'fncir-10-00037-g005.jpg'], bgcolor="white", fragment=True,
-        title=None, height=s.meta['height']*.8) + jens_bib,
+        title=None, embed=False, height=s.meta['height']*.8) + jens_bib,
            notes="""
 
 """)
@@ -308,18 +289,10 @@ one can go one step before the cortex and ask the same question in the retina
 are the same process present ?
 """)
 
-# s.add_slide(content=s.content_figures(
-#         [os.path.join(figpath_talk, 'Olshausen_5.png')], bgcolor="white",
-#         title=None, height=s.meta['height']*.85) + ols_bib,
-#            notes="""
-#
-# """)
-
-
 ravelllo_bib = s.content_bib('Ravello, LP, Escobar, Palacios', '2018', 'Scientific Reports', url='https://dx.doi.org/10.1101/350330')
 for si in ['2', '1', '5ac', '5dh']:
     s.add_slide(content=s.content_figures(
-            [os.path.join(figpath_talk, 'Ravello2018_'+ si + '.png')], title=None, height=s.meta['height']*.7)+ravelllo_bib,
+            [os.path.join(figpath_talk, 'Ravello2018_'+ si + '.png')], title=None, embed=False, height=s.meta['height']*.7)+ravelllo_bib,
             notes="""
 figure 3 of MS1
 
@@ -339,7 +312,7 @@ same procedure with retinal filters (scale, no orientation) = sparseness
 droplets_bib = s.content_bib('Ravello, Escobar, Palacios, LP', '2019', 'in prep', url=None)
 s.add_slide(content=s.content_figures(
                     ['figures/Droplets_1.png'], fragment=True, transpose=True,
-                    title=None, height=s.meta['height']*.8)+droplets_bib,
+                    title=None, embed=False, height=s.meta['height']*.8)+droplets_bib,
             notes="""
 figure 1 of droplets
 
@@ -350,7 +323,7 @@ ols_bib = s.content_bib("Olshausen and Field", "1997", 'Sparse coding with an ov
 for i in [2]:
     s.add_slide(content=s.content_figures(
         [os.path.join(figpath_talk, 'Olshausen_'+ str(i) + '.png')], bgcolor="white",
-        title=None, height=s.meta['height']*.85) + ols_bib,
+        title=None, embed=False, height=s.meta['height']*.85) + ols_bib,
            notes="""
 since we assume the retina would invert this model, let's use the forward model
 to generate stimuli = droplets
@@ -371,21 +344,11 @@ very sparse to very dense
 
 
 droplets_bib = s.content_bib('Ravello, Escobar, Palacios, LP', '2019', 'in prep', url=None)
-figpath = os.path.join(home, 'science/DropLets/figures/')
-# s.add_slide(content=s.content_figures(
-#                     [os.path.join(figpath, 'retina_sparseness_droplets.png'),
-#                      os.path.join(figpath, 'PSTH11.png'),
-#                      os.path.join(figpath, 'PSTH25.png')], fragment=True, transpose=True,
-#                     title=None, height=s.meta['height']*.7)+droplets_bib,
-#             notes="""
-# figure 3 of droplets
-#
-# """)
 for suffix in ['a', 'b']:
     s.add_slide(content=s.content_figures(
                     [#os.path.join(figpath, 'retina_sparseness_droplets.png'),
                      os.path.join(figpath_talk, 'Droplets_3_' + suffix + '.png')], fragment=False, transpose=True,
-                    title=None, height=s.meta['height']*.75)+droplets_bib,
+                    title=None, embed=False, height=s.meta['height']*.75)+droplets_bib,
             notes="""
 figure 3 of droplets
 
@@ -393,7 +356,7 @@ figure 3 of droplets
 
 s.add_slide(content=s.content_figures(
                     ['figures/Droplets_5.png'],
-                    title=None, height=s.meta['height']*.75)+droplets_bib,
+                    title=None, embed=False, height=s.meta['height']*.75)+droplets_bib,
             notes="""
 figure 5 of droplets
 
@@ -464,7 +427,7 @@ a contribution we made to this algorithm is homeostasis
 CNN_ref = '(from <a href="http://cs231n.github.io/convolutional-networks/">http://cs231n.github.io/convolutional-networks/</a>)'
 s.add_slide(content=s.content_figures(
     ['http://cs231n.github.io/assets/cnn/depthcol.jpeg'], bgcolor="black",
-title=None, height=s.meta['height']*.85) + CNN_ref,
+title=None,  embed=False, height=s.meta['height']*.85) + CNN_ref,
        notes="""
 
 this can be extended to a convolutional neural networks
@@ -481,12 +444,10 @@ discussion...
 
 """)
 
-figpath = 'figures'
-
 for suffix in ['1', '2a', '2b']:
     s.add_slide(content=s.content_figures(
-        [os.path.join(figpath, 'SDPC_' + suffix + '.png')], bgcolor="black",
-    title=None, height=s.meta['height']*.85),
+        [os.path.join(figpath_talk, 'SDPC_' + suffix + '.png')], bgcolor="black",
+    title=None, embed=False, height=s.meta['height']*.85),
            notes="""
 
 Multi-layered unsupervised Learning
@@ -498,7 +459,7 @@ Multi-layered unsupervised Learning
 s.add_slide(content=s.content_figures(
     [os.path.join(figpath, 'SDPC_' + suffix + '.png') for suffix in ['3', '4']],
     bgcolor="black", fragment=True,
-    title=None, height=s.meta['height']*.75),
+    title=None, embed=False, height=s.meta['height']*.75),
        notes="""
 
 allows for a better classification as here for MNIST digits
