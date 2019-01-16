@@ -443,7 +443,7 @@ figpath = os.path.join(home, 'science/ABC/HULK/')
 for suffix in ['map', 'HAP']:
     s.add_slide(content=s.content_figures(
         [os.path.join(figpath, 'figure_' + suffix + '.png')], bgcolor="black",
-    title=None, height=s.meta['height']*.85),
+    title=None, height=s.meta['height']*.61803),
            notes="""
 a contribution we made to this algorithm is homeostasis
 
