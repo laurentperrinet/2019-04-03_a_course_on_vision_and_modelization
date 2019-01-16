@@ -335,7 +335,7 @@ figure 1 of droplets
 
 
 ols_bib = s.content_bib("Olshausen and Field", "1997", 'Sparse coding with an overcomplete basis set: A strategy employed by V1?')
-for i in [1, 2, 5]:
+for i in [2]:
     s.add_slide(content=s.content_figures(
         [os.path.join(figpath_talk, 'Olshausen_'+ str(i) + '.png')], bgcolor="white",
         title=None, height=s.meta['height']*.85) + ols_bib,
