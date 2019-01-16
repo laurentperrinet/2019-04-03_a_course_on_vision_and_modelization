@@ -383,7 +383,6 @@ to separate independent sources
 
 """)
 
-figpath = os.path.join(home, 'Desktop/2017-01_LACONEU/figures/')
 s.add_slide(content="""
     <video controls loop width=60%/>
       <source type="video/mp4" src="{}">
