@@ -313,6 +313,16 @@ are the same process present ?
 #
 # """)
 
+
+ravelllo_bib = s.content_bib('Ravello, LP, Escobar, Palacios', '2018', 'Scientific Reports', url='https://dx.doi.org/10.1101/350330')
+for si in ['2', '1', '5ac', '5dh']:
+    s.add_slide(content=s.content_figures(
+            [os.path.join(figpath_talk, 'Ravello2018_'+ si + '.png')], title=None, height=s.meta['height']*.7)+ravelllo_bib,
+            notes="""
+figure 3 of MS1
+
+""")
+
 # figpath = os.path.join(home, 'Desktop/2017-01_LACONEU/figures/')
 s.add_slide(content="""
     <video controls loop width=85%/>
