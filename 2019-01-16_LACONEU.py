@@ -370,11 +370,20 @@ very sparse to very dense
 
 droplets_bib = s.content_bib('Ravello, Escobar, Palacios, LP', '2019', 'in prep', url=None)
 figpath = os.path.join(home, 'science/DropLets/figures/')
-s.add_slide(content=s.content_figures(
+# s.add_slide(content=s.content_figures(
+#                     [os.path.join(figpath, 'retina_sparseness_droplets.png'),
+#                      os.path.join(figpath, 'PSTH11.png'),
+#                      os.path.join(figpath, 'PSTH25.png')], fragment=True, transpose=True,
+#                     title=None, height=s.meta['height']*.7)+droplets_bib,
+#             notes="""
+# figure 3 of droplets
+#
+# """)
+for suffix in ['a', 'b']:
+    s.add_slide(content=s.content_figures(
                     [os.path.join(figpath, 'retina_sparseness_droplets.png'),
-                     os.path.join(figpath, 'PSTH11.png'),
-                     os.path.join(figpath, 'PSTH25.png')], fragment=True, transpose=True,
-                    title=None, height=s.meta['height']*.7)+droplets_bib,
+                     os.path.join(figpath_talk, 'Droplets_3' + suffix + '.png')], fragment=False, transpose=True,
+                    title=None, height=s.meta['height']*.75)+droplets_bib,
             notes="""
 figure 3 of droplets
 
@@ -382,7 +391,7 @@ figure 3 of droplets
 
 s.add_slide(content=s.content_figures(
                     ['figures/Droplets_5.png'],
-                    title=None, height=s.meta['height']*.7)+droplets_bib,
+                    title=None, height=s.meta['height']*.75)+droplets_bib,
             notes="""
 figure 5 of droplets
 
