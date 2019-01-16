@@ -19,6 +19,6 @@ show: html
 	open /Applications/Safari.app/Contents/MacOS/Safari $(SRC).html
 
 github: html
-	git commit -am' updating slides'
+	git commit --dry-run -am 'Test' | grep -q -v 'nothing to commit' && git commit -am' updating slides'
 	git push
 	open https://laurentperrinet.github.io/$(SRC)
