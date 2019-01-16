@@ -6,7 +6,8 @@ edit:
 	atom $(SRC).py
 
 html:
-	python3 $(SRC).py $(SRC).html
+	#python3 $(SRC).py $(SRC).html
+	python3 $(SRC).py index.html
 
 page:
 	python3 $(SRC).py
