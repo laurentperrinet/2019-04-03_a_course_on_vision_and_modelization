@@ -1,4 +1,4 @@
-default: github
+default: print
 
 SRC=2019-01-16_LACONEU
 

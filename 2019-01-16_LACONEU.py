@@ -466,18 +466,13 @@ if slides_filename is None:
 
 = {title}  =
 
- Quoi:: [[{conference_url}|{conference}]]
- Qui:: {author}
- Quand:: {DD}/{MM}/{YYYY}
- Où:: {location}
-
-
  What:: talk @ the [[{conference_url}|{conference}]]
  Who:: {author}
  When:: {DD}/{MM}/{YYYY}
  Where:: {location}
- Slides:: http://blog.invibe.net/files/{tag}.html
+ Slides:: https://laurentperrinet.github.io/{tag}
  Code:: https://github.com/laurentperrinet/{tag}/
+
 == reference ==
 {{{{{{
 #!bibtex
