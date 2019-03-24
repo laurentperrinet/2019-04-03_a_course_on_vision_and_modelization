@@ -160,23 +160,28 @@ First in the retina, thanks to a collaboration with CR,  MJE and AP in Chile we 
 """)
 
 
-for si in ['2', '1', '5ac', '5dh']:
+for si in ['1', '2', '5ac']:#, '5dh']:
     s.add_slide(content=s.content_figures(
             [os.path.join(figpath_talk, 'Ravello2018_'+ si + '.png')], title=None, embed=False, height=s.meta['height']*.7)+ravelllo_bib,
             notes="""
 figure 3 of MS1
 
-""")
-
-s.add_slide(content=s.content_figures(
-    [os.path.join(figpath_talk, 'featured.jpg')], bgcolor="white", embed=False,
-    title=None, height=s.meta['height']*.85) + ravello_bib,
-            notes="""
 ... surprisingly as shown here, retinal responses get sparser with comlpexity: the selectivity to speed in particular gets sharper for broadband stimuli.
 
 it may seem counter intuitive, but makes sense: gratings contain only one frequency - it's "poor"" while natural images contain a wider range of information
 
+
 """)
+#
+# s.add_slide(content=s.content_figures(
+#     [os.path.join(figpath_talk, 'featured.jpg')], bgcolor="white", embed=False,
+#     title=None, height=s.meta['height']*.85) + ravello_bib,
+#             notes="""
+# ... surprisingly as shown here, retinal responses get sparser with comlpexity: the selectivity to speed in particular gets sharper for broadband stimuli.
+#
+# it may seem counter intuitive, but makes sense: gratings contain only one frequency - it's "poor"" while natural images contain a wider range of information
+#
+# """)
 
 
 jens_bib = s.content_bib("Kremkow, LP, Monier, Alonso, Aertsen, Fregnac, Masson", "2016", 'Push-pull receptive field organization and synaptic depression: Mechanisms for reliably encoding naturalistic stimuli in V1', url='https://laurentperrinet.github.io/publication/kremkow-16/')
@@ -301,6 +306,14 @@ s.open_section()
 title = meta['sections'][i_section]
 s.add_slide_outline(i_section,
 notes="""
+
+
+let's move to the second part : learning
+
+the main goal of Olshasuen was not only sparse coding but
+the fact that using the sparse code, a simple linear hebbian learning allows
+to separate independent sources
+
 one can go one step before the cortex and ask the same question in the retina
 are the same process present ?
 
@@ -310,10 +323,10 @@ Theoretical advances in neural networks modelling have recently been pushed by t
 
 """)
 
-SDPC_bib = s.content_bib('Boutin, Franciosini, LP', '2019', 'submitted', url="https://arxiv.org/pdf/1902.07651.pdf")
+SDPC_bib = s.content_bib('Boutin, Franciosini, Ruffier, LP', '2019', 'submitted', url="https://laurentperrinet.github.io/publication/boutin-franciosini-ruffier-perrinet-19/")
 
 s.add_slide(content=s.content_figures(
-                    ['figures/Droplets_1.png'], fragment=True, transpose=True,
+                    ['figures/boutin-franciosini-ruffier-perrinet-19_figure1.png'], fragment=True, transpose=True,
                     title=None, embed=False, height=s.meta['height']*.8)+SDPC_bib,
             notes="""
 figure 1 of SDPC
@@ -321,6 +334,27 @@ figure 1 of SDPC
 research/NN-2018
 """)
 
+
+CNN_ref = '(from <a href="http://cs231n.github.io/convolutional-networks/">http://cs231n.github.io/convolutional-networks/</a>)'
+s.add_slide(content=s.content_figures(
+    ['http://cs231n.github.io/assets/cnn/depthcol.jpeg'], bgcolor="black",
+title=None,  embed=False, height=s.meta['height']*.85) + CNN_ref,
+       notes="""
+
+this can be extended to a convolutional neural networks
+
+""")
+
+SDPC_bib = s.content_bib('Boutin, Franciosini, Ruffier, LP', '2019', 'submitted', url="https://laurentperrinet.github.io/publication/boutin-franciosini-ruffier-perrinet-19/")
+
+s.add_slide(content=s.content_figures(
+                    [os.path.join(figpath_talk, 'boutin-franciosini-ruffier-perrinet-19_figure1.png')], # fragment=True, transpose=True,
+                    title=None, embed=False, height=s.meta['height']*.8)+SDPC_bib,
+            notes="""
+figure 1 of SDPC
+
+research/NN-2018
+""")
 
 
 s.close_section()
@@ -335,45 +369,13 @@ s.open_section()
 title = meta['sections'][i_section]
 s.add_slide_outline(i_section,
 notes="""
-let's move to the second part : learning
 
-the main goal of Olshasuen was not only sparse coding but
-the fact that using the sparse code, a simple linear hebbian learning allows
-to separate independent sources
-
-""")
-
-figpath = os.path.join(home, 'science/HULK/HULK/')
-
-for suffix in ['map', 'HAP']:
-    s.add_slide(content=s.content_figures(
-        [os.path.join(figpath, 'figure_' + suffix + '.png')], bgcolor="black",
-    title=None, height=s.meta['height']*.75),
-           notes="""
-a contribution we made to this algorithm is homeostasis
+Let's now apply that to natural images of faces
 
 
 
 """)
-CNN_ref = '(from <a href="http://cs231n.github.io/convolutional-networks/">http://cs231n.github.io/convolutional-networks/</a>)'
-s.add_slide(content=s.content_figures(
-    ['http://cs231n.github.io/assets/cnn/depthcol.jpeg'], bgcolor="black",
-title=None,  embed=False, height=s.meta['height']*.85) + CNN_ref,
-       notes="""
 
-this can be extended to a convolutional neural networks
-
-""")
-
-for suffix in ['CNN']:
-    s.add_slide(content=s.content_figures(
-        [os.path.join(figpath, 'figure_' + suffix + '.png')], bgcolor="black",
-    title=None, height=s.meta['height']*.85),
-           notes="""
-
-discussion...
-
-""")
 
 for suffix in ['1', '2a', '2b']:
     s.add_slide(content=s.content_figures(
