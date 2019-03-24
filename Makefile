@@ -9,7 +9,7 @@ html:
 	#python3 $(SRC).py $(SRC).html
 	python3 $(SRC).py index.html
 
-figures:
+figures: figures/boutin-franciosini-ruffier-perrinet-19_figure1_a.svg
 	rsvg-convert figures/boutin-franciosini-ruffier-perrinet-19_figure1_a.svg -f png -d 450 -p 450 -o figures/boutin-franciosini-ruffier-perrinet-19_figure1_a.png
 	rsvg-convert figures/boutin-franciosini-ruffier-perrinet-19_figure1_b.svg -f png -d 450 -p 450 -o figures/boutin-franciosini-ruffier-perrinet-19_figure1_b.png
 	rsvg-convert figures/boutin-franciosini-ruffier-perrinet-19_figure1_c.svg -f png -d 450 -p 450 -o figures/boutin-franciosini-ruffier-perrinet-19_figure1_c.png
