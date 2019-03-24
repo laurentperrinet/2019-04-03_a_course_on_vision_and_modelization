@@ -1,5 +1,5 @@
-default: github
-# yk8KybcbfzYh
+default: show
+
 SRC=2019-03-25_HDR_RobinBaures
 
 edit:
@@ -11,12 +11,13 @@ html:
 
 page:
 	python3 $(SRC).py
-	cat /tmp/wiki.txt |pbcopy
-	#open https://invibe.net/cgi-bin/index.cgi/Presentations/$(SRC)?action=edit
+	cat /tmp/talk.bib |pbcopy
+	atom ~/pool/blog/perrinet_curriculum-vitae_tex/LaurentPerrinet_Presentations.bib
+	# academic ... 
 
 show: html
 #	open -a firefox $(SRC).html
-	open /Applications/Safari.app/Contents/MacOS/Safari $(SRC).html
+	open /Applications/Safari.app/Contents/MacOS/Safari  index.html
 
 github: html
 	git commit --dry-run -am 'Test' | grep -q -v 'nothing to commit' && git commit -am' updating slides'

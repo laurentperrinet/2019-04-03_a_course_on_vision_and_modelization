@@ -38,29 +38,21 @@ meta = dict(
  reveal_path='https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.7.0/',
  theme='simple',
  bgcolor="white",
- author='Laurent Perrinet, INT',
- author_link='<a href="https://laurentperrinet.github.io">Laurent Perrinet</a>',
- short_title='Efficient coding of visual information in neural computations',
- title='Efficient coding of visual information in neural computations',
- conference_url='http://www.laconeu.cl',
- short_conference='LACONEU 2019',
- conference='LACONEU 2019: 5th Latin-American Summer School in Computational Neuroscience',
- location='Valparaiso (Chile)',
+ author='Victor Boutin and Angelo Franciosini and Laurent Perrinet',
+ author_link='<a href="https://laurentperrinet.github.io">Victor Boutin, Angelo Franciosini and Laurent Perrinet</a>',
+ short_title='Predictive processing in the visual system',
+ title='From the retina to action: Predictive processing in the visual system',
+ conference_url='http://www.cerco.ups-tlse.fr/Robin-Baures',
+ short_conference='HDR Robin Baurès',
+ conference='HDR Robin Baurès',
+ location='Toulouse (France)',
+ abstract="""Visual areas are essential in transforming the raw luminous signal into a representation which efficiently conveys information about the environment. This process is constrained by various factors such as a wide variety of changes in the characteristics of the visual image but also by the necessity to be able to respond as quickly as possible to the incoming sensory stream, for instance to drive a movement of the eyes to the location of a potential danger. To achieve this, it is believed that the visual system takes advantage of the existence of a priori knowledge in the structure of visual information, such as the regularity in the shape and motion of visual objects. As such, the predictive coding coding framework offers a unified theory to explain many of the mechanisms at the different levels of the visual system and which were unveiled by decades of study in neurophysiology and psychophysics.""",
  YYYY=YYYY, MM=MM, DD=DD,
  tag=tag,
  url=f'https://laurentperrinet.github.io/{tag}',
- abstract="""
-""",
-wiki_extras="""
-----
-<<Include(BibtexNote)>>
-----
-<<Include(AnrHorizontalV1Aknow)>>
-----
-TagYear{YY} TagTalks [[TagAnrHorizontalV1]]""".format(YY=str(YYYY)[-2:]),
-sections=['Efficiency, vision and neurons',
-          'Sparse coding in the retina?',
-          'Sparse Hebbian Learning']
+ sections=['Retina, Sparse coding and unsupervised learning',
+          'A model of Sparse Deep Predictive Coding',
+          'Emergence of mid-level features']
 )
 
 # https://pythonhosted.org/PyQRCode/rendering.html
@@ -80,7 +72,7 @@ print(meta['sections'])
 s = Slides(meta)
 
 ###############################################################################
-# 🏄🏄🏄🏄🏄🏄🏄🏄 intro  🏄🏄🏄🏄🏄🏄🏄🏄
+# 🏄🏄🏄🏄🏄🏄🏄🏄 intro: Retina, Sparse coding and unsupervised learning  🏄🏄🏄🏄🏄🏄🏄🏄
 ###############################################################################
 i_section = 0
 s.open_section()
@@ -117,17 +109,17 @@ intro += """
 s.hide_slide(content=intro)
 
 s.hide_slide(content=s.content_figures([figname], cell_bgcolor=meta['bgcolor'], height=s.meta['height']*height_ratio) + '<BR><a href="{url}"> {url} </a>'.format(url=meta['url']),
-            notes=" All the material is available online - please flash this QRcode this leads to a page with links to further references and code ")
+            notes="All the material is available online - please flash this QRcode this leads to a page with links to further references and code ")
 
 s.add_slide(content=intro,
             notes="""
 * (AUTHOR) Hello, I am Laurent Perrinet from the Institute of Neurosciences of
 la Timone in Marseille, a joint unit from the CNRS and the AMU
 
-* (OBJECTIVE) in this talk, I will be focus in highlighting
-some key challenges in understanding visual perception
-in terams of efficient coding
-using modelization and neural data
+* (OBJECTIVE)
+Today I will present some recent results on Predictive processing in the visual system ... in visual systemS /
+From the retina to action
+
 * please interrupt
 
 * (ACKNO) this endeavour involves different techniques and tools ...
@@ -136,43 +128,129 @@ From the head on, I wish to thanks people who collaborated  and in particular ..
 (fregnac chavane) + ANR TRAJECTORY (o marrre bruno cessac palacios )
 + LONDON (Jim Bednar, Friston)
 
-* (SHOW TITLE) I am interested in the link
-between the neural code and the structure of the world.
-in particular, for vision, I am researching
-the relation between the
-functional (in terms of the inferential processes leading to  behaviour)
-organization (anatomy and activity)
-of low-level visual areas (V1) and the structures of natural scenes,
-that is of the images that hit the retina and which are
-relevant to visual perception in general.
+* (SHOW TITLE)
+
+Visual areas are essential in transforming the raw luminous signal into a representation which efficiently conveys information about the environment. This process is constrained by various factors such as a wide variety of changes in the characteristics of the visual image but also by the necessity to be able to respond as quickly as possible to the incoming sensory stream, for instance to drive a movement of the eyes to the location of a potential danger.
+
+As a consequence, and to rephrase [@Wigner90], "the Unreasonable Effectiveness of Vision in the Natural World" invites us to focus on this cognitive ability for a better understanding of the brain in general.
+
+To achieve this, it is believed that the visual system takes advantage of the existence of a priori knowledge in the structure of visual information, such as the regularity in the shape and motion of visual objects. As such, the predictive coding coding framework offers a unified theory to explain many of the mechanisms at the different levels of the visual system and which were unveiled by decades of study in neurophysiology and psychophysics.
 
 
-
-Theoretical advances in neural networks modelling have recently been pushed by the field of machine learning. These have proposed that biological neural networks could process information according to certain constraints of efficiency, such as minimizing the surprise of sensory states given noisy or ambiguous sensory inputs. We have developed such a Hierarchical (Deep) Predictive Coding model using unsupervised learning on (static) natural images, and that we wish to extend to (dynamic) sensory flows. Compared to classical Deep Learning models, one advantage of this approach is that the learned synaptic weights are meaningful, that is that they often emerge as to represent explicitly components of the input image in increasing levels of complexity: edges at the first layer, curvatures in the second, the eye or mouth in the third layer when presenting images of faces. Such networks can also be extended to supervised or reinforcement learning by adding efferent layers that would accept such labels.
-#
 
 """)
 
+ravello_bib = s.content_bib("LP", "2015", '"Sparse models" in <a href="http://invibe.net/LaurentPerrinet/Publications/Perrinet15bicv">Biologically Inspired Computer Vision</a>')
+# $ o /Users/laurentperrinet/pool/blog/laurentperrinet.github.io_sciblog/files/2019-01-30_Ravello19_text.mp4
+# /Users/laurentperrinet/pool/blog/hugo_academic/content/publication/ravello-19
+ravelllo_bib = s.content_bib('Ravello, LP, Escobar, Palacios', '2019', 'Scientific Reports', url='https://laurentperrinet.github.io/publication/ravello-19/')
 
-review_bib = s.content_bib("LP", "2015", '"Sparse models" in <a href="http://invibe.net/LaurentPerrinet/Publications/Perrinet15bicv">Biologically Inspired Computer Vision</a>')
-
-figpath = os.path.join(home, 'science/invibe/2018_visuels')
+figpath = os.path.join(home, 'pool/blog/laurentperrinet.github.io_sciblog/files/')
+figpath = os.path.join(home, 'pool/blog/hugo_academic/content/publication/ravello-19')
 s.add_slide(content="""
     <video controls loop width=60%/>
       <source type="video/mp4" src="{}">
     </video>
-    """.format(#'figures/MP.mp4'), #
-                s.embed_video(os.path.join(figpath, 'MP.mp4'))),
+    """.format(s.embed_video(os.path.join(figpath, 'video_perrinet.mp4'))) + ravello_bib,
             notes="""
-... this video shows this intuition in a quantitative way. from a natural image,
-we extracted independent sources as individual edges at different scales and
-orientations
+First in the retina, thanks to a collaboration with CR,  MJE and AP in Chile we have studied the response of retinal cells as recorded on grids of electordes in a diurnal rodent, the degu.
 
-when we reconstruct this image frame by frame (see N)
-we can quickly recognize the image
+... this video shows the type of stimulations that we have shown from classical gratings to noisier texture
 
-natural images are sparse
 """)
+
+
+for si in ['2', '1', '5ac', '5dh']:
+    s.add_slide(content=s.content_figures(
+            [os.path.join(figpath_talk, 'Ravello2018_'+ si + '.png')], title=None, embed=False, height=s.meta['height']*.7)+ravelllo_bib,
+            notes="""
+figure 3 of MS1
+
+""")
+
+s.add_slide(content=s.content_figures(
+    [os.path.join(figpath_talk, 'featured.jpg')], bgcolor="white", embed=False,
+    title=None, height=s.meta['height']*.85) + ravello_bib,
+            notes="""
+... surprisingly as shown here, retinal responses get sparser with comlpexity: the selectivity to speed in particular gets sharper for broadband stimuli.
+
+it may seem counter intuitive, but makes sense: gratings contain only one frequency - it's "poor"" while natural images contain a wider range of information
+
+""")
+
+
+jens_bib = s.content_bib("Kremkow, LP, Monier, Alonso, Aertsen, Fregnac, Masson", "2016", 'Push-pull receptive field organization and synaptic depression: Mechanisms for reliably encoding naturalistic stimuli in V1', url='https://laurentperrinet.github.io/publication/kremkow-16/')
+jens_url = 'https://www.frontiersin.org/files/Articles/190318/fncir-10-00037-HTML/image_m/'
+jens_url = 'figures/'
+for l in ['a', 'b', '']:
+    s.add_slide(content=s.content_figures(
+        [jens_url + 'fncir-10-00037-g001' + l + '.jpg'], bgcolor="white",
+        title=None, embed=False, height=s.meta['height']*.8) + jens_bib,
+           notes="""
+there are many more evidences for this and in particular, we have modeled that for the ... cat's cortex following recordings done in Yves Fregnac's lab
+
+""")
+
+# https://www.frontiersin.org/files/Articles/190318/fncir-10-00037-HTML/image_m/fncir-10-00037-g004.jpg
+# https://www.frontiersin.org/files/Articles/190318/fncir-10-00037-HTML/image_m/fncir-10-00037-g005.jpg
+s.add_slide(content=s.content_figures(
+        [jens_url + 'fncir-10-00037-g004.jpg', jens_url + 'fncir-10-00037-g005.jpg'], bgcolor="white", fragment=True,
+        title=None, embed=False, height=s.meta['height']*.8) + jens_bib,
+           notes="""
+
+for this, we had
+
+
+such processing seems also extend to action
+""")
+
+
+#
+# ols_bib = s.content_bib("Olshausen and Field", "1997", 'Sparse coding with an overcomplete basis set: A strategy employed by V1?')
+# for i in [2]:
+#     s.add_slide(content=s.content_figures(
+#         [os.path.join(figpath_talk, 'Olshausen_'+ str(i) + '.png')], bgcolor="white",
+#         title=None, embed=False, height=s.meta['height']*.85) + ols_bib,
+#            notes="""
+# since we assume the retina would invert this model, let's use the forward model
+# to generate stimuli = droplets
+#
+# """)
+
+
+review_bib = s.content_bib("LP", "2015", '"Sparse models" in <a href="http://invibe.net/LaurentPerrinet/Publications/Perrinet15bicv">Biologically Inspired Computer Vision</a>')
+#
+# figpath = os.path.join(home, 'science/invibe/2018_visuels')
+# s.add_slide(content="""
+#     <video controls loop width=60%/>
+#       <source type="video/mp4" src="{}">
+#     </video>
+#     """.format(#'figures/MP.mp4'), #
+#                 s.embed_video(os.path.join(figpath, 'MP.mp4'))),
+#             notes="""
+# ... this video shows this intuition in a quantitative way. from a natural image,
+# we extracted independent sources as individual edges at different scales and
+# orientations
+#
+# when we reconstruct this image frame by frame (see N)
+# we can quickly recognize the image
+#
+# natural images are sparse
+# """)
+
+# figpath = os.path.join(home, 'Desktop/2017-01_LACONEU/figures/')
+s.add_slide(content="""
+    <video controls loop width=85%/>
+      <source type="video/mp4" src="{}">
+    </video>
+    """.format('figures/v1_tiger.mp4') + review_bib, #s.embed_video(os.path.join(figpath,     """.format(s.embed_video(os.path.join(figpath_talk, 'v1_tiger.mp4'))),
+notes="""
+
+hypothesis= structural prior that one can learn
+
+same procedure with retinal filters (scale, no orientation) = sparseness
+""")
+
 
 ols_bib = s.content_bib("Olshausen and Field", "1997", 'Sparse coding with an overcomplete basis set: A strategy employed by V1?')
 for i in [1, 2, 5]:
@@ -200,81 +278,18 @@ you need a recurrent / recursive network  (see arrow) and this is precisely
 a possible function for one of the most numerous type of synapses: short-ranges
 lateral interactions
 
+
+
 """)
 
 
+s.add_slide(content="""
+    <video controls loop width=60%/>
+      <source type="video/mp4" src="{}">
+    </video>
+    """.format('figures/ssc.mp4')) #s.embed_video(os.path.join(figpath,         s.embed_video(os.path.join('figures', 'ssc.mp4'))))
+#
 
-figpath = os.path.join(home, 'pool/science/PerrinetBednar15/talk/')
-# anatomical
-s.add_slide(content=s.content_figures(
-        [os.path.join(figpath, 'Bosking97Fig4.jpg')], title=None,
-            height=s.meta['height']*.85) +
-            s.content_bib("Bosking et al.", "1997", " Journal of Neuroscience"),
-            notes="""
-in the primary visual cortex for instance,
- the set of long-range lateral connections between neurons, which could
-act to facilitate detection of contours matching the association field, and/or
-inhibit detection of other contours. To fill this role, the lateral connections
-would need to be orientation specific and aligned along contours, * (colin) and
-indeed such an arrangement has been found in treeshrew's primary visual
-cortex  (Bosking et al., J Neurosci 17:2112-27, 1997)
-* (neural) if one looks at  the primary visual area in the occipital lobe of the cortex
-using optical imaging as here in the treeshrew by Bosking and colleagues under the
-supervision of DF, one could represent the distributed, topographical representation
-of orientation selectivity. in (A) and (B) the orientation giving the most response
-at each cortical position is represented by hue using the code below from orange for
-horizontal to blue for verticals, and typical structures are magnified in (C): stripes
-(on the periphery) and pinwheels. You can understand this as a packing of a 3D feature
-space on the 2D surface of the cortex.
-* (method)  Tree shrew orientation preference maps were obtained using optical imaging.
-Additionally, 540 nm light was used to map surface blood vessels used for alignment.
-Biocytin was then injected into a specific site in V1 and the animal was sacrificed 16
-hours later. Slices of V1 were imaged to locate the biocytin bouton and the surface
-blood vessels. The blood vessel information was then used to align the orientation
-preference maps with the bouton images giving overlaid information on the underlying
-connectivity from the injection site on the animal. The original experiment used a total
-of ten cases.
-* (lateral) we show here one result of Bosking
-which overlay over a map or orientation selectivity the network of lateral connectivity
-originating froma group of neurons with similar orientations and position. There is
-a structure in this connectivity towards locality (more pronounced for site B) +
-connecting iso orientations even on long ranges (A). This type of structure tends
-to wire together those neurons that have similar orientations, indicating a prior
-to colinearities.
-*(colin) ... Overall, a typical assumption that the role of lateral interactions is to
-enhance the activity of neurons which are collinear : it is the so-called
-**association field** formalized in Field 93, as was for instance modeled neurally in
-the work from P. Series or in this version for computer vision
-* (physio) is there a match of these structures with the statistics of natural images?
- 2) Some authors (Kisvarday, 1997, Chavane and Monier) even say it is weak or
-inexistent on a the scale of the area... 1:  Hunt & Goodhill have reinterpreted above data and shown that there is more diversity
-than that -
-* TRANSITION : my goal here will be to tackle this problem at different levels:
-""")
-
-
-
-#Jens Kremkow, Laurent U Perrinet, Cyril Monier, Jose-Manuel Alonso, Ad Aertsen, Yves Fregnac, Guillaume S Masson. Push-pull receptive field organization and synaptic depression: Mechanisms for reliably encoding naturalistic stimuli in V1, URL URL2 URL3 . Frontiers in Neural Circuits, 2016
-
-jens_bib = s.content_bib("Kremkow, LP, Monier, Alonso, Aertsen, Fregnac, Masson", "2016", 'Push-pull receptive field organization and synaptic depression: Mechanisms for reliably encoding naturalistic stimuli in V1', url='http://invibe.net/LaurentPerrinet/Publications/Kremkow16')
-jens_url = 'https://www.frontiersin.org/files/Articles/190318/fncir-10-00037-HTML/image_m/'
-jens_url = 'figures/'
-for l in ['a', 'b', '']:
-    s.add_slide(content=s.content_figures(
-        [jens_url + 'fncir-10-00037-g001' + l + '.jpg'], bgcolor="white",
-        title=None, embed=False, height=s.meta['height']*.8) + jens_bib,
-           notes="""
-
-""")
-
-# https://www.frontiersin.org/files/Articles/190318/fncir-10-00037-HTML/image_m/fncir-10-00037-g004.jpg
-# https://www.frontiersin.org/files/Articles/190318/fncir-10-00037-HTML/image_m/fncir-10-00037-g005.jpg
-s.add_slide(content=s.content_figures(
-        [jens_url + 'fncir-10-00037-g004.jpg', jens_url + 'fncir-10-00037-g005.jpg'], bgcolor="white", fragment=True,
-        title=None, embed=False, height=s.meta['height']*.8) + jens_bib,
-           notes="""
-
-""")
 s.close_section()
 
 i_section += 1
@@ -288,86 +303,31 @@ s.add_slide_outline(i_section,
 notes="""
 one can go one step before the cortex and ask the same question in the retina
 are the same process present ?
-""")
 
-ravelllo_bib = s.content_bib('Ravello, LP, Escobar, Palacios', '2018', 'Scientific Reports', url='https://dx.doi.org/10.1101/350330')
-for si in ['2', '1', '5ac', '5dh']:
-    s.add_slide(content=s.content_figures(
-            [os.path.join(figpath_talk, 'Ravello2018_'+ si + '.png')], title=None, embed=False, height=s.meta['height']*.7)+ravelllo_bib,
-            notes="""
-figure 3 of MS1
+
+Theoretical advances in neural networks modelling have recently been pushed by the field of machine learning. These have proposed that biological neural networks could process information according to certain constraints of efficiency, such as minimizing the surprise of sensory states given noisy or ambiguous sensory inputs. We have developed such a Hierarchical (Deep) Predictive Coding model using unsupervised learning on (static) natural images, and that we wish to extend to (dynamic) sensory flows. Compared to classical Deep Learning models, one advantage of this approach is that the learned synaptic weights are meaningful, that is that they often emerge as to represent explicitly components of the input image in increasing levels of complexity: edges at the first layer, curvatures in the second, the eye or mouth in the third layer when presenting images of faces. Such networks can also be extended to supervised or reinforcement learning by adding efferent layers that would accept such labels.
+#
 
 """)
 
-# figpath = os.path.join(home, 'Desktop/2017-01_LACONEU/figures/')
-s.add_slide(content="""
-    <video controls loop width=85%/>
-      <source type="video/mp4" src="{}">
-    </video>
-    """.format('figures/v1_tiger.mp4'), #s.embed_video(os.path.join(figpath,     """.format(s.embed_video(os.path.join(figpath_talk, 'v1_tiger.mp4'))),
-notes="""
-same procedure with retinal filters (scale, no orientation) = sparseness
-""")
+SDPC_bib = s.content_bib('Boutin, Franciosini, LP', '2019', 'submitted', url="https://arxiv.org/pdf/1902.07651.pdf")
 
-
-droplets_bib = s.content_bib('Ravello, Escobar, Palacios, LP', '2019', 'in prep', url=None)
 s.add_slide(content=s.content_figures(
                     ['figures/Droplets_1.png'], fragment=True, transpose=True,
-                    title=None, embed=False, height=s.meta['height']*.8)+droplets_bib,
+                    title=None, embed=False, height=s.meta['height']*.8)+SDPC_bib,
             notes="""
-figure 1 of droplets
+figure 1 of SDPC
 
+research/NN-2018
 """)
 
 
-ols_bib = s.content_bib("Olshausen and Field", "1997", 'Sparse coding with an overcomplete basis set: A strategy employed by V1?')
-for i in [2]:
-    s.add_slide(content=s.content_figures(
-        [os.path.join(figpath_talk, 'Olshausen_'+ str(i) + '.png')], bgcolor="white",
-        title=None, embed=False, height=s.meta['height']*.85) + ols_bib,
-           notes="""
-since we assume the retina would invert this model, let's use the forward model
-to generate stimuli = droplets
-
-""")
-
-figpath = os.path.join(home,  'pool/science/RetinaCloudsSparse/2015-11-13_droplets/2015-11-13_1310_full_files/droplets_full')
-for fname in ['00012_droplets_i_sparse_3_n_sf_8.mp4', '00006_droplets_i_sparse_5_n_sf_1.mp4', ]:
-    s.add_slide(content="""
-        <video controls loop width=60%/>
-          <source type="video/mp4" src="{}">
-        </video>
-        """.format(s.embed_video(os.path.join(figpath, fname))),
-                notes="""
-very sparse to very dense
-
-    """)
-
-
-droplets_bib = s.content_bib('Ravello, Escobar, Palacios, LP', '2019', 'in prep', url=None)
-for suffix in ['a', 'b']:
-    s.add_slide(content=s.content_figures(
-                    [#os.path.join(figpath, 'retina_sparseness_droplets.png'),
-                     os.path.join(figpath_talk, 'Droplets_3_' + suffix + '.png')], fragment=False, transpose=True,
-                    title=None, embed=False, height=s.meta['height']*.75)+droplets_bib,
-            notes="""
-figure 3 of droplets
-
-""")
-
-s.add_slide(content=s.content_figures(
-                    ['figures/Droplets_5.png'],
-                    title=None, embed=False, height=s.meta['height']*.75)+droplets_bib,
-            notes="""
-figure 5 of droplets
-
-""")
 
 s.close_section()
 
 i_section += 1
 ###############################################################################
-# 🏄🏄🏄🏄🏄🏄🏄🏄         Sparse Hebbian Learning - 15''              🏄🏄🏄🏄🏄🏄🏄🏄
+# 🏄🏄🏄🏄🏄🏄🏄🏄         Results - 10''              🏄🏄🏄🏄🏄🏄🏄🏄
 ###############################################################################
 ###############################################################################
 
@@ -382,13 +342,6 @@ the fact that using the sparse code, a simple linear hebbian learning allows
 to separate independent sources
 
 """)
-
-s.add_slide(content="""
-    <video controls loop width=60%/>
-      <source type="video/mp4" src="{}">
-    </video>
-    """.format('figures/ssc.mp4')) #s.embed_video(os.path.join(figpath,         s.embed_video(os.path.join('figures', 'ssc.mp4'))))
-#
 
 figpath = os.path.join(home, 'science/HULK/HULK/')
 
@@ -460,37 +413,67 @@ s.add_slide(content=intro,
 
 * Thanks for your attention!
 """)
+
+
+
+s.add_slide(content=s.content_figures([figname], cell_bgcolor=meta['bgcolor'], height=s.meta['height']*height_ratio) + '<BR><a href="{url}"> {url} </a>'.format(url=meta['url']),
+            notes="All the material is available online - please flash this QRcode this leads to a page with links to further references and code ")
+
+
+
+figpath = os.path.join(home,  'pool/science/RetinaCloudsSparse/2015-11-13_droplets/2015-11-13_1310_full_files/droplets_full')
+for fname in ['00012_droplets_i_sparse_3_n_sf_8.mp4', '00006_droplets_i_sparse_5_n_sf_1.mp4', ]:
+    s.add_slide(content="""
+        <video controls loop width=60%/>
+          <source type="video/mp4" src="{}">
+        </video>
+        """.format(s.embed_video(os.path.join(figpath, fname))),
+                notes="""
+very sparse to very dense
+
+    """)
+
+
+droplets_bib = s.content_bib('Ravello, Escobar, Palacios, LP', '2019', 'in prep', url=None)
+for suffix in ['a', 'b']:
+    s.add_slide(content=s.content_figures(
+                    [#os.path.join(figpath, 'retina_sparseness_droplets.png'),
+                     os.path.join(figpath_talk, 'Droplets_3_' + suffix + '.png')], fragment=False, transpose=True,
+                    title=None, embed=False, height=s.meta['height']*.75)+droplets_bib,
+            notes="""
+figure 3 of droplets
+
+""")
+
+s.add_slide(content=s.content_figures(
+                    ['figures/Droplets_5.png'],
+                    title=None, embed=False, height=s.meta['height']*.75)+droplets_bib,
+            notes="""
+figure 5 of droplets
+
+""")
+
 s.close_section()
 
 
 if slides_filename is None:
 
-    with open("/tmp/wiki.txt", "w") as text_file:
+    with open("/tmp/talk.bib", "w") as text_file:
         text_file.write("""\
-#acl All:read
 
-= {title}  =
-
- What:: talk @ the [[{conference_url}|{conference}]]
- Who:: {author}
- When:: {DD}/{MM}/{YYYY}
- Where:: {location}
- Slides:: https://laurentperrinet.github.io/{tag}
- Code:: https://github.com/laurentperrinet/{tag}/
-
-== reference ==
-{{{{{{
-#!bibtex
 @inproceedings{{{tag},
     Author = "{author}",
     Booktitle = "{conference}, {location}",
     Title = "{title}",
+    Abstract = "{abstract}",
     Url = "{url}",
     Year = "{YYYY}",
+    Date = "{YYYY}-{MM}-{DD}",
+    url_slides = "https://laurentperrinet.github.io/{tag}",
+    url_code = "https://github.com/laurentperrinet/{tag}/",
+
 }}
-}}}}}}
-## add an horizontal rule to end the include
-{wiki_extras}
+
 """.format(**meta))
 
 else:
