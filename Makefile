@@ -1,4 +1,4 @@
-default: print
+default: github
 # yk8KybcbfzYh
 SRC=2019-03-25_HDR_RobinBaures
 
@@ -12,7 +12,7 @@ html:
 page:
 	python3 $(SRC).py
 	cat /tmp/wiki.txt |pbcopy
-	open https://invibe.net/cgi-bin/index.cgi/Presentations/$(SRC)?action=edit
+	#open https://invibe.net/cgi-bin/index.cgi/Presentations/$(SRC)?action=edit
 
 show: html
 #	open -a firefox $(SRC).html
