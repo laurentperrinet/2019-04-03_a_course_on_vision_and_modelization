@@ -388,7 +388,8 @@ s.add_slide(content="""
     <video controls loop width=60%/>
       <source type="video/mp4" src="{}">
     </video>
-    """.format('figures/20190206-Training of the SDPC model on AT&T database-0CFrmgEcGpw.f135.mp4'))
+    """.format('figures/training_video_ATT.mp4'))
+# 20190206-Training of the SDPC model on AT&T database-0CFrmgEcGpw.f135.mp4
 
 for suffix in ['4a', '4b']:
     s.add_slide(content=s.content_figures(
