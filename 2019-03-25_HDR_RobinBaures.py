@@ -104,6 +104,10 @@ intro = """
 intro += s.content_imagelet(os.path.join(figpath_slides, "troislogos.png"), s.meta['height']*.2) #bgcolor="black",
 intro += """
 <h4><a href="{conference_url}">{conference}</a>, {DD}/{MM}/{YYYY} </h4>
+
+<small>
+    This project has received funding from the European Union’s Horizon 2020 research and innovation programme under the Marie Skłodowska-Curie grant agreement n°713750. Also, it has been carried out with the financial support of the Regional Council of Provence-Alpes-Côte d'Azur and with the financial support of the A*MIDEX (n°ANR-11-IDEX-0001-02). This work was granted access to the HPC resources of Aix-Marseille Université financed by the project Equip@Meso (ANR-10-EQPX-29-01) of the program "Investissements d’Avenir".
+</small>
 """.format(**meta)
 
 s.hide_slide(content=intro)
@@ -160,13 +164,13 @@ First in the retina, thanks to a collaboration with CR,  MJE and AP in Chile we 
 """)
 
 
-for si in ['1', '2', '5ac']:#, '5dh']:
+for si in ['2', '5ac', '1', ]:#, '5dh']:
     s.add_slide(content=s.content_figures(
-            [os.path.join(figpath_talk, 'Ravello2018_'+ si + '.png')], title=None, embed=False, height=s.meta['height']*.7)+ravelllo_bib,
+            [os.path.join(figpath_talk, 'Ravello2018_'+ si + '.png')], title=None, embed=False, height=s.meta['height']*.7) + ravelllo_bib,
             notes="""
 figure 3 of MS1
 
-... surprisingly as shown here, retinal responses get sparser with comlpexity: the selectivity to speed in particular gets sharper for broadband stimuli.
+... surprisingly as shown here, retinal responses get sparser with complexity: the selectivity to speed in particular gets sharper for broadband stimuli.
 
 it may seem counter intuitive, but makes sense: gratings contain only one frequency - it's "poor"" while natural images contain a wider range of information
 
@@ -187,7 +191,8 @@ it may seem counter intuitive, but makes sense: gratings contain only one freque
 jens_bib = s.content_bib("Kremkow, LP, Monier, Alonso, Aertsen, Fregnac, Masson", "2016", 'Push-pull receptive field organization and synaptic depression: Mechanisms for reliably encoding naturalistic stimuli in V1', url='https://laurentperrinet.github.io/publication/kremkow-16/')
 jens_url = 'https://www.frontiersin.org/files/Articles/190318/fncir-10-00037-HTML/image_m/'
 jens_url = 'figures/'
-for l in ['a', 'b', '']:
+# for l in ['a', 'b', '']:
+for l in ['a', '']:
     s.add_slide(content=s.content_figures(
         [jens_url + 'fncir-10-00037-g001' + l + '.jpg'], bgcolor="white",
         title=None, embed=False, height=s.meta['height']*.8) + jens_bib,
@@ -198,16 +203,16 @@ there are many more evidences for this and in particular, we have modeled that f
 
 # https://www.frontiersin.org/files/Articles/190318/fncir-10-00037-HTML/image_m/fncir-10-00037-g004.jpg
 # https://www.frontiersin.org/files/Articles/190318/fncir-10-00037-HTML/image_m/fncir-10-00037-g005.jpg
-s.add_slide(content=s.content_figures(
-        [jens_url + 'fncir-10-00037-g004.jpg', jens_url + 'fncir-10-00037-g005.jpg'], bgcolor="white", fragment=True,
-        title=None, embed=False, height=s.meta['height']*.8) + jens_bib,
-           notes="""
-
-for this, we had
-
-
-such processing seems also extend to action
-""")
+# s.add_slide(content=s.content_figures(
+#         [jens_url + 'fncir-10-00037-g004.jpg', jens_url + 'fncir-10-00037-g005.jpg'], bgcolor="white", fragment=True,
+#         title=None, embed=False, height=s.meta['height']*.8) + jens_bib,
+#            notes="""
+#
+# for this, we had
+#
+#
+# such processing seems also extend to action
+# """)
 
 
 #
@@ -261,7 +266,7 @@ ols_bib = s.content_bib("Olshausen and Field", "1997", 'Sparse coding with an ov
 for i in [1, 2, 5]:
     s.add_slide(content=s.content_figures(
         [os.path.join(figpath_talk, 'Olshausen_'+ str(i) + '.png')], bgcolor="white", embed=False,
-        title=None, height=s.meta['height']*.85) + ols_bib,
+        title=None, height=s.meta['height']*.85) + '<small>' + ols_bib + '<\small>',
            notes="""
 a seminal idea is proposed by Olshausen:
 * this may be formalized as an inference problem:
@@ -287,13 +292,13 @@ lateral interactions
 
 """)
 
+shl_bib = s.content_bib("LP", "2010", 'Neural Computation', url="https://laurentperrinet.github.io/publication/perrinet-10-shl/")
 
 s.add_slide(content="""
     <video controls loop width=60%/>
       <source type="video/mp4" src="{}">
     </video>
-    """.format('figures/ssc.mp4')) #s.embed_video(os.path.join(figpath,         s.embed_video(os.path.join('figures', 'ssc.mp4'))))
-#
+    """.format('figures/ssc.mp4') + shl_bib )
 
 s.close_section()
 
@@ -326,7 +331,7 @@ Theoretical advances in neural networks modelling have recently been pushed by t
 SDPC_bib = s.content_bib('Boutin, Franciosini, Ruffier, LP', '2019', 'submitted',
             url="https://laurentperrinet.github.io/publication/boutin-franciosini-ruffier-perrinet-19/")
 
-for suffix in ['a']:
+for suffix in ['_a']:
     s.add_slide(content=s.content_figures(
         [os.path.join(figpath_talk, 'boutin-franciosini-ruffier-perrinet-19_figure1' + suffix + '.png')], bgcolor="black",
     title=None, embed=False, height=s.meta['height']*.85)+SDPC_bib,
@@ -349,7 +354,7 @@ this can be extended to a convolutional neural networks
 """)
 
 
-for suffix in ['b', 'c', '']:
+for suffix in ['_b', '_c', '']:
     s.add_slide(content=s.content_figures(
         [os.path.join(figpath_talk, 'boutin-franciosini-ruffier-perrinet-19_figure1' + suffix + '.png')], bgcolor="black",
     title=None, embed=False, height=s.meta['height']*.85)+SDPC_bib,
@@ -377,10 +382,13 @@ notes="""
 
 Let's now apply that to natural images of faces
 
-
-
 """)
 
+s.add_slide(content="""
+    <video controls loop width=60%/>
+      <source type="video/mp4" src="{}">
+    </video>
+    """.format('figures/20190206-Training of the SDPC model on AT&T database-0CFrmgEcGpw.f135.mp4'))
 
 for suffix in ['4a', '4b']:
     s.add_slide(content=s.content_figures(
