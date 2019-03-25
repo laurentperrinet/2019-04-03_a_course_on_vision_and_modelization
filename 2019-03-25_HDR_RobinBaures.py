@@ -385,7 +385,7 @@ Let's now apply that to natural images of faces
 """)
 
 s.add_slide(content="""
-    <video controls loop width=60%/>
+    <video controls loop width=85%/>
       <source type="video/mp4" src="{}">
     </video>
     """.format('figures/training_video_ATT.mp4'))
