@@ -266,7 +266,7 @@ ols_bib = s.content_bib("Olshausen and Field", "1997", 'Sparse coding with an ov
 for i in [1, 2, 5]:
     s.add_slide(content=s.content_figures(
         [os.path.join(figpath_talk, 'Olshausen_'+ str(i) + '.png')], bgcolor="white", embed=False,
-        title=None, height=s.meta['height']*.85) + '<small>' + ols_bib + '<\small>',
+        title=None, height=s.meta['height']*.85) + ols_bib, #+ f' <small>{ols_bib}<\small> ',
            notes="""
 a seminal idea is proposed by Olshausen:
 * this may be formalized as an inference problem:
@@ -354,7 +354,7 @@ this can be extended to a convolutional neural networks
 """)
 
 
-for suffix in ['_b', '_c', '']:
+for suffix in ['_a', '_b', '_c', '']:
     s.add_slide(content=s.content_figures(
         [os.path.join(figpath_talk, 'boutin-franciosini-ruffier-perrinet-19_figure1' + suffix + '.png')], bgcolor="black",
     title=None, embed=False, height=s.meta['height']*.85)+SDPC_bib,
