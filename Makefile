@@ -1,4 +1,4 @@
-default: show
+default: github
 
 SRC=2019-03-25_HDR_RobinBaures
 

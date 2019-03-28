@@ -39,7 +39,7 @@ meta = dict(
  theme='simple',
  bgcolor="white",
  author='Boutin, Victor and Franciosini, Angelo and Perrinet, Laurent U',
- author_link='<a href="https://laurentperrinet.github.io">Victor Boutin, Angelo Franciosini and Laurent Perrinet</a>',
+ author_link=f'<a href="https://laurentperrinet.github.io/talk/2019-03-25-hdr-robin-baures/">Victor Boutin, Angelo Franciosini and Laurent Perrinet</a>',
  short_title='Predictive processing in the visual system',
  title='From the retina to action: Predictive processing in the visual system',
  conference_url='http://www.cerco.ups-tlse.fr/Robin-Baures',
