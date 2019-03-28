@@ -38,7 +38,7 @@ meta = dict(
  reveal_path='https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.7.0/',
  theme='simple',
  bgcolor="white",
- author='Victor Boutin and Angelo Franciosini and Laurent Perrinet',
+ author='Boutin, Victor and Franciosini, Angelo and Perrinet, Laurent U',
  author_link='<a href="https://laurentperrinet.github.io">Victor Boutin, Angelo Franciosini and Laurent Perrinet</a>',
  short_title='Predictive processing in the visual system',
  title='From the retina to action: Predictive processing in the visual system',
@@ -49,7 +49,9 @@ meta = dict(
  abstract="""Visual areas are essential in transforming the raw luminous signal into a representation which efficiently conveys information about the environment. This process is constrained by various factors such as a wide variety of changes in the characteristics of the visual image but also by the necessity to be able to respond as quickly as possible to the incoming sensory stream, for instance to drive a movement of the eyes to the location of a potential danger. To achieve this, it is believed that the visual system takes advantage of the existence of a priori knowledge in the structure of visual information, such as the regularity in the shape and motion of visual objects. As such, the predictive coding coding framework offers a unified theory to explain many of the mechanisms at the different levels of the visual system and which were unveiled by decades of study in neurophysiology and psychophysics.""",
  YYYY=YYYY, MM=MM, DD=DD,
  tag=tag,
- url=f'https://laurentperrinet.github.io/{tag}',
+ projects='anr-horizontal-v1',
+ time_start = '14:30:00',
+  url=f'https://laurentperrinet.github.io/{tag}',
  sections=['Retina, Sparse coding and unsupervised learning',
           'A model of Sparse Deep Predictive Coding',
           'Emergence of mid-level features']
@@ -477,18 +479,20 @@ if slides_filename is None:
 
     with open("/tmp/talk.bib", "w") as text_file:
         text_file.write("""\
-
 @inproceedings{{{tag},
     Author = "{author}",
-    Booktitle = "{conference}, {location}",
+    Booktitle = "{conference}",
     Title = "{title}",
     Abstract = "{abstract}",
     Url = "{url}",
     Year = "{YYYY}",
-    Date = "{YYYY}-{MM}-{DD}",
+    Date = "{YYYY}-{MM:02d}-{DD:02d}",
+    location = "{location}",
+    projects = "{projects}",
+    time_start = "{YYYY}-{MM:02d}-{DD:02d}T{time_start}",
+    url = "{url}",
     url_slides = "https://laurentperrinet.github.io/{tag}",
     url_code = "https://github.com/laurentperrinet/{tag}/",
-
 }}
 
 """.format(**meta))
