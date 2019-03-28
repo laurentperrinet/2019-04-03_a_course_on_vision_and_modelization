@@ -364,7 +364,7 @@ for suffix in ['_a', '_b', '_c', '']:
 
 figure 1 of SDPC
 
-research/NN-2018
+cf. research/NN-2018
 
 """)
 
