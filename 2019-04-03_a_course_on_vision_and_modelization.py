@@ -83,8 +83,22 @@ s = Slides(meta)
 i_section = 0
 s.open_section()
 ###############################################################################
+intro = """
+<h2 class="title">{title}</h2>
+<h3>{author_link}</h3>
+""".format(**meta)
+intro += s.content_imagelet(os.path.join(figpath_slides, "troislogos.png"), s.meta['height']*.2) #bgcolor="black",
+intro += """
+<h4><a href="{conference_url}">{conference}</a>, {DD}/{MM}/{YYYY} </h4>
 
-s.hide_slide(content=s.content_figures(
+<small>
+    This project has received funding from the European Union’s Horizon 2020 research and innovation programme under the Marie Skłodowska-Curie grant agreement n°713750. Also, it has been carried out with the financial support of the Regional Council of Provence-Alpes-Côte d'Azur and with the financial support of the A*MIDEX (n°ANR-11-IDEX-0001-02). This work was granted access to the HPC resources of Aix-Marseille Université financed by the project Equip@Meso (ANR-10-EQPX-29-01) of the program "Investissements d’Avenir".
+</small>
+""".format(**meta)
+###############################################################################
+s.add_slide(content=intro)
+
+s.add_slide(content=s.content_figures(
     #[os.path.join(figpath_talk, 'qr.png')], bgcolor="black",
     [os.path.join(figpath_slides, 'mire.png')], bgcolor=meta['bgcolor'],
     height=s.meta['height']*.90),
@@ -103,22 +117,8 @@ http://pne.people.si.umich.edu/PDF/howtotalk.pdf
 
  """)
 
-intro = """
-<h2 class="title">{title}</h2>
-<h3>{author_link}</h3>
-""".format(**meta)
-intro += s.content_imagelet(os.path.join(figpath_slides, "troislogos.png"), s.meta['height']*.2) #bgcolor="black",
-intro += """
-<h4><a href="{conference_url}">{conference}</a>, {DD}/{MM}/{YYYY} </h4>
 
-<small>
-    This project has received funding from the European Union’s Horizon 2020 research and innovation programme under the Marie Skłodowska-Curie grant agreement n°713750. Also, it has been carried out with the financial support of the Regional Council of Provence-Alpes-Côte d'Azur and with the financial support of the A*MIDEX (n°ANR-11-IDEX-0001-02). This work was granted access to the HPC resources of Aix-Marseille Université financed by the project Equip@Meso (ANR-10-EQPX-29-01) of the program "Investissements d’Avenir".
-</small>
-""".format(**meta)
-
-s.hide_slide(content=intro)
-
-s.hide_slide(content=s.content_figures([figname], cell_bgcolor=meta['bgcolor'], height=s.meta['height']*height_ratio) + '<BR><a href="{url}"> {url} </a>'.format(url=meta['url']),
+s.add_slide(content=s.content_figures([figname], cell_bgcolor=meta['bgcolor'], height=s.meta['height']*height_ratio) + '<BR><a href="{url}"> {url} </a>'.format(url=meta['url']),
             notes="All the material is available online - please flash this QRcode this leads to a page with links to further references and code ")
 
 s.add_slide(content=intro,
