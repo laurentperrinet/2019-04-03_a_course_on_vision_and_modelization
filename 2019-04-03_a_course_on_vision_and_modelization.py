@@ -68,11 +68,11 @@ meta = dict(
 import pathlib
 pathlib.Path(figpath_talk).mkdir(parents=True, exist_ok=True)
 
-figname = os.path.join(figpath_talk, 'qr.png')
-if not os.path.isfile(figname):
+figname_qr = os.path.join(figpath_talk, 'qr.png')
+if not os.path.isfile(figname_qr):
     import pyqrcode as pq
     code = pq.create(meta['url'])
-    code.png(figname, scale=5)
+    code.png(figname_qr, scale=5)
 
 print(meta['sections'])
 s = Slides(meta)
@@ -118,7 +118,7 @@ http://pne.people.si.umich.edu/PDF/howtotalk.pdf
  """)
 
 
-s.add_slide(content=s.content_figures([figname], cell_bgcolor=meta['bgcolor'], height=s.meta['height']*height_ratio) + '<BR><a href="{url}"> {url} </a>'.format(url=meta['url']),
+s.add_slide(content=s.content_figures([figname_qr], cell_bgcolor=meta['bgcolor'], height=s.meta['height']*height_ratio) + '<BR><a href="{url}"> {url} </a>'.format(url=meta['url']),
             notes="All the material is available online - please flash this QRcode this leads to a page with links to further references and code ")
 
 s.add_slide(content=intro,
@@ -388,6 +388,104 @@ notes="""
 """)
 
 
+s.add_slide(content=s.content_figures(
+        [os.path.join(figpath_talk, "HH_Models.png"), ], bgcolor="black",
+        title=None, height=s.meta['height']*.8),
+          notes="""
+# ownCNRS/2019-01_LACONEU/2019-01-14_LACONEU/tmp/4-HH Models.ipynb
+ownCNRS/2019-01_LACONEU/2019-01-14_LACONEU/A_1_HodgkinHuxley.ipynb
+HH_firing.png
+""")
+
+
+# https://brian2.readthedocs.io/en/stable/_static/brian-logo.png
+# http://www.nest-initiative.org/wp-content/uploads/2015/03/nest-initiative_logo.png
+# http://neuralensemble.org/docs/PyNN/0.7/_static/pyNN_logo.png
+s.add_slide(content=s.content_figures(
+        [os.path.join(figpath_talk, "brian-logo.png"),
+         os.path.join(figpath_talk, "nest-initiative_logo.png"),
+         os.path.join(figpath_talk, "pyNN_logo.png"), ], bgcolor="black",
+        title=s.meta['title'], height=s.meta['height']*.4),
+          notes="""
+
+""")
+
+s.add_slide(content=s.content_figures(
+        [os.path.join(figpath_talk, "HH_firing.png"), ], bgcolor="black",
+        title=None, height=s.meta['height']*.8),
+          notes="""
+# ownCNRS/2019-01_LACONEU/2019-01-14_LACONEU/tmp/4-HH Models.ipynb
+ownCNRS/2019-01_LACONEU/2019-01-14_LACONEU/A_1_HodgkinHuxley.ipynb
+HH_firing.png
+""")
+
+s.add_slide(content=s.content_figures(
+        [os.path.join(figpath_talk, "IF_cond_exp.png"), ], bgcolor="black",
+        title=None, height=s.meta['height']*.8),
+          notes="""
+
+# http://neuralensemble.org/docs/PyNN/0.7/_images/IF_cond_exp.png
+
+""")
+
+s.add_slide(content=s.content_figures(
+        [os.path.join(figpath_talk, "izhik.png"), ], bgcolor="black",
+        title=None, height=s.meta['height']*.8),
+          notes="""
+
+# https://www.izhikevich.org/publications/izhik.png
+
+""")
+
+s.add_slide(content=s.content_figures(
+        [os.path.join(figpath_talk, "hugoladret_InternshipM2_CUBA.png"), ], bgcolor="black",
+        title=None, height=s.meta['height']*.8),
+          notes="""
+
+# https://github.com/hugoladret/InternshipM2/blob/master/FINAL_Retina_LGN_generation.ipynb
+
+""")
+
+
+s.add_slide(content=s.content_figures(
+        [os.path.join(figpath_talk, "Fig_ring_model.png"), ], bgcolor="black",
+        title=None, height=s.meta['height']*.8),
+          notes="""
+
+# /Volumes/data/2018_backup/archives/2018_science/2018_HL_M1/figs/Fig_ring_model.pdf
+
+""")
+
+
+for figname in ['Brunel200Fig1.png', 'Brunel200Fig2.png']:
+    s.add_slide(content=s.content_figures(
+        [os.path.join(figpath_talk, figname), ], bgcolor="black",
+        title=None, height=s.meta['height']*.8),
+          notes="""
+
+
+# https://sci-hub.tw/https://doi.org/10.1016/S0925-2312(00)00179-X
+
+""")
+
+s.add_slide(content=s.content_figures(
+        [os.path.join(figpath_talk, "fig_sup_stdps.png"), ], bgcolor="black",
+        title=None, height=s.meta['height']*.8),
+          notes="""
+
+#  /Users/laurentperrinet/nextcloud/RTC/2019-01-11\ rapport\ M2A\ HL\ 5bf69490a5705a15960895d6/Figures/fig_sup_stdps.pdf
+
+""")
+
+s.add_slide(content=s.content_figures(
+        [os.path.join(figpath_talk, "hugoladret_InternshipM2_FINAL_1_couche.png"), ], bgcolor="black",
+        title=None, height=s.meta['height']*.8),
+          notes="""
+
+# https://github.com/hugoladret/InternshipM2/blob/master/FINAL_1_couche.ipynb
+
+""")
+
 s.close_section()
 
 i_section += 1
@@ -511,7 +609,7 @@ s.add_slide(content=intro,
 
 
 
-s.add_slide(content=s.content_figures([figname], cell_bgcolor=meta['bgcolor'], height=s.meta['height']*height_ratio) + '<BR><a href="{url}"> {url} </a>'.format(url=meta['url']),
+s.add_slide(content=s.content_figures([figname_qr], cell_bgcolor=meta['bgcolor'], height=s.meta['height']*height_ratio) + '<BR><a href="{url}"> {url} </a>'.format(url=meta['url']),
             notes="All the material is available online - please flash this QRcode this leads to a page with links to further references and code ")
 
 s.close_section()
