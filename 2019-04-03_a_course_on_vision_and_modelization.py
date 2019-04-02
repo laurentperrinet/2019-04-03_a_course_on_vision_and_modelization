@@ -55,7 +55,7 @@ meta = dict(
  time_start = '14:30:00',
  url=f'https://laurentperrinet.github.io/talk/{slugify(tag)}',
  sections=['From the retina to action: Levels of modeling',
-          'Neurophysiology and neural processing',
+          'Sparse coding in Neurophysiology and neural processing',
           'Modeling Spiking Neural Networks',
           'A model of Sparse Deep Predictive Coding',
           ]
@@ -134,13 +134,89 @@ From the retina to action
 
 * (ACKNO) this endeavour involves different techniques and tools ...
 From the head on, I wish to thanks people who collaborated  and in particular ..
-  mostly funded by the ANR horizontal V1
-(fregnac chavane) + ANR TRAJECTORY (o marrre bruno cessac palacios )
+  mostly funded by the ANR horizontal V1 (fregnac chavane)
 + LONDON (Jim Bednar, Friston)
 
 * (SHOW TITLE)
 
 """)
+
+Churchland92_bib = s.content_bib("Churchland, P. S. & Sejnowski, T. J.", "1992", 'The computational brain. Cambridge, MA: MIT Press.')
+
+for si in ['', ]:#, '5dh']:
+    s.add_slide(content=s.content_figures(
+            [os.path.join(figpath_talk, 'Churchland92' + si + '.png')], title=None, embed=False, height=s.meta['height']*.7) + ravelllo_bib,
+            notes="""
+
+Screenshot from Craver, C. F. (2015). Levels. In T. Metzinger & J. M. Windt (Eds). Open MIND: 8(T). Frankfurt am Main: MIND Group. doi: 10.15502/9783958570498 24 | 26
+
+""")
+#
+
+    # open questions:
+    #figpath = '../2017-03-06_cours-NeuroComp_intro/figures'
+    bib =  '(see this <a href=" http://viperlib.york.ac.uk/areas/15-anatomy-physiology/contributions/2032-hubel-and-wiesel">viperlib</a> page)'
+
+    for fname in ['scientists.jpg']:
+        s.add_slide(content=s.content_figures(
+           [os.path.join(figpath_talk, fname)], cell_bgcolor=bgcolor,
+           title=meta['sections'][i_section], height=s.meta['height']*height_ratio) + bib,
+            notes="""
+
+* (INTRO) Indeed, a conundrum in visual neuroscience, and neuroscience in general, is to infer the causes that underly the firing of any given neural cell. in visual neuroscience, this is conceptualized by the term of receptive field [[---a concept which dates back to Sherrington and to the scratch reflex of the dog---]] and which corresponds to the set of visual stimuli that causes the firing of any given neuron, this set being guessed by changing the parameters of the visual stimulation,
+ * to illustrate this methodology, I love to see this picture of David Hubel and Torsten Wiesel performing their Nobel Prize-winning experiments on area V1.  ( source: http://viperlib.york.ac.uk/areas/15-anatomy-physiology/contributions/2032-hubel-and-wiesel ) -
+ """)
+
+    s.add_slide(content="""
+        <video controls width=99%/>
+          <source type="video/mp4" src="{}">
+        </video>
+        <BR>
+        """.format(s.embed_video(os.path.join(figpath_talk, 'ComplexDirSelCortCell250_title.mp4'))) + bib,
+    notes="""
+on the video, they characterize a complex cell from area V1 by manipulating the visual stimulation's parameters: central position, orientation of a bar, direction, ...
+* -> As a consequence,  Neurons are often characterized using simple stimuli like bars or grating
+    """)
+
+
+    # figpath = os.path.join(home, 'tmp/2015_RTC/2014-12-31_PerrinetAdamsFriston14/poster/12-06-25_AREADNE/')
+    freemove_bib = s.content_bib("LP, Adams and Friston", "2015", 'Biological Cybernetics', url="http://invibe.net/LaurentPerrinet/Publications/PerrinetAdamsFriston14")
+
+    #for fname in ['figure1.png', 'figure2.png']:
+    # figpath_law = os.path.join(home, 'quantic/2016_science/2016-10-13_LAW/figures')
+    figpath = 'figures/'
+    for fname, note in zip(['friston_figure2.png', 'friston_figure1.png'], ["""
+* This schematic shows the dependencies among various quantities modelling exchanges of an agent with the environment. It shows the states of the environment and the system in terms of a probabilistic dependency graph, where connections denote directed (causal) dependencies. The quantities are described within the nodes of this graph -- with exemplar forms for their dependencies on other variables.
+
+* Hidden (external) and internal states of the agent are separated by action and sensory states. Both action and internal states -- encoding a conditional probability density function over hidden states -- minimise free energy. Note that hidden states in the real world and the form of their dynamics can be different from that assumed by the generative model; (this is why hidden states are in bold. )
+""","""
+*  Active inference uses a generalisation of Kalman filtering to provide Bayes optimal estimates of hidden states and action in generalized coordinates of motion. As we have seen previously, the central nervous system has to contend with axonal delays, both at the sensory and the motor levels. Representing hidden states in generalized coordinates provides a simple way of compensating for both these delays.
+
+* This mathematical framework can be mapped to the anatomy of the visual system. Similar to the sketch that we have shown above, "compiling" (that is, solving) the equations of Free-energy minimization forms a set of coupled differential equations which correpond to different node along the visuo-oculomotor pathways.
+""",):
+        s.add_slide(#image_fname=os.path.join(figpath, fname),
+        content=s.content_figures(
+    [os.path.join(figpath_talk, fname)], bgcolor="white",
+    #title=title,
+     height=s.meta['height']*height_ratio) + freemove_bib,
+    notes=note)
+s.close_section()
+
+# >>> Lup IS HERE <<<
+
+i_section += 1
+###############################################################################
+# 🏄🏄🏄🏄🏄🏄🏄🏄 Sparse coding in Neurophysiology and neural processing  🏄🏄🏄🏄🏄🏄🏄🏄
+###############################################################################
+###############################################################################
+s.open_section()
+title = meta['sections'][i_section]
+s.add_slide_outline(i_section,
+notes="""
+
+
+""")
+
 
 ravello_bib = s.content_bib("LP", "2015", '"Sparse models" in <a href="http://invibe.net/LaurentPerrinet/Publications/Perrinet15bicv">Biologically Inspired Computer Vision</a>')
 # $ o /Users/laurentperrinet/pool/blog/laurentperrinet.github.io_sciblog/files/2019-01-30_Ravello19_text.mp4
@@ -213,18 +289,6 @@ there are many more evidences for this and in particular, we have modeled that f
 # """)
 
 
-#
-# ols_bib = s.content_bib("Olshausen and Field", "1997", 'Sparse coding with an overcomplete basis set: A strategy employed by V1?')
-# for i in [2]:
-#     s.add_slide(content=s.content_figures(
-#         [os.path.join(figpath_talk, 'Olshausen_'+ str(i) + '.png')], bgcolor="white",
-#         title=None, embed=False, height=s.meta['height']*.85) + ols_bib,
-#            notes="""
-# since we assume the retina would invert this model, let's use the forward model
-# to generate stimuli = droplets
-#
-# """)
-
 
 review_bib = s.content_bib("LP", "2015", '"Sparse models" in <a href="http://invibe.net/LaurentPerrinet/Publications/Perrinet15bicv">Biologically Inspired Computer Vision</a>')
 #
@@ -260,6 +324,18 @@ same procedure with retinal filters (scale, no orientation) = sparseness
 """)
 
 
+#
+# ols_bib = s.content_bib("Olshausen and Field", "1997", 'Sparse coding with an overcomplete basis set: A strategy employed by V1?')
+# for i in [2]:
+#     s.add_slide(content=s.content_figures(
+#         [os.path.join(figpath_talk, 'Olshausen_'+ str(i) + '.png')], bgcolor="white",
+#         title=None, embed=False, height=s.meta['height']*.85) + ols_bib,
+#            notes="""
+# since we assume the retina would invert this model, let's use the forward model
+# to generate stimuli = droplets
+#
+# """)
+
 ols_bib = s.content_bib("Olshausen and Field", "1997", 'Sparse coding with an overcomplete basis set: A strategy employed by V1?')
 for i in [1, 2, 5]:
     s.add_slide(content=s.content_figures(
@@ -286,25 +362,31 @@ you need a recurrent / recursive network  (see arrow) and this is precisely
 a possible function for one of the most numerous type of synapses: short-ranges
 lateral interactions
 
-
-
 """)
-
-shl_bib = s.content_bib("LP", "2010", 'Neural Computation', url="https://laurentperrinet.github.io/publication/perrinet-10-shl/")
-
-s.add_slide(content="""
-    <video controls loop width=60%/>
-      <source type="video/mp4" src="{}">
-    </video>
-    """.format('figures/ssc.mp4') + shl_bib )
 
 s.close_section()
 
 i_section += 1
 ###############################################################################
-# 🏄🏄🏄🏄🏄🏄🏄🏄 Sparse coding  🏄🏄🏄🏄🏄🏄🏄🏄
+# 🏄🏄🏄🏄🏄🏄🏄🏄 Modeling Spiking Neural Networks  🏄🏄🏄🏄🏄🏄🏄🏄
 ###############################################################################
 ###############################################################################
+s.open_section()
+title = meta['sections'][i_section]
+s.add_slide_outline(i_section,
+notes="""
+
+""")
+
+
+s.close_section()
+
+i_section += 1
+###############################################################################
+# 🏄🏄🏄🏄🏄🏄🏄🏄 DEEP LEARNING  A model of Sparse Deep Predictive Coding      🏄🏄🏄🏄🏄🏄🏄🏄
+###############################################################################
+###############################################################################
+
 s.open_section()
 title = meta['sections'][i_section]
 s.add_slide_outline(i_section,
@@ -325,6 +407,16 @@ Theoretical advances in neural networks modelling have recently been pushed by t
 #
 
 """)
+
+
+shl_bib = s.content_bib("LP", "2010", 'Neural Computation', url="https://laurentperrinet.github.io/publication/perrinet-10-shl/")
+
+s.add_slide(content="""
+    <video controls loop width=60%/>
+      <source type="video/mp4" src="{}">
+    </video>
+    """.format('figures/ssc.mp4') + shl_bib )
+
 
 SDPC_bib = s.content_bib('Boutin, Franciosini, Ruffier, LP', '2019', 'submitted',
             url="https://laurentperrinet.github.io/publication/boutin-franciosini-ruffier-perrinet-19/")
@@ -364,29 +456,16 @@ cf. research/NN-2018
 
 """)
 
-
-s.close_section()
-
-i_section += 1
-###############################################################################
-# 🏄🏄🏄🏄🏄🏄🏄🏄         Results - 10''              🏄🏄🏄🏄🏄🏄🏄🏄
-###############################################################################
-###############################################################################
-
-s.open_section()
-title = meta['sections'][i_section]
-s.add_slide_outline(i_section,
-notes="""
-
-Let's now apply that to natural images of faces
-
-""")
-
 s.add_slide(content="""
     <video controls loop width=85%/>
       <source type="video/mp4" src="{}">
     </video>
-    """.format('figures/training_video_ATT.mp4'))
+    """.format('figures/training_video_ATT.mp4'),
+    notes="""
+
+    Let's now apply that to natural images of faces
+
+    """)
 # 20190206-Training of the SDPC model on AT&T database-0CFrmgEcGpw.f135.mp4
 
 for suffix in ['4a', '4b']:
@@ -433,40 +512,6 @@ s.add_slide(content=intro,
 
 s.add_slide(content=s.content_figures([figname], cell_bgcolor=meta['bgcolor'], height=s.meta['height']*height_ratio) + '<BR><a href="{url}"> {url} </a>'.format(url=meta['url']),
             notes="All the material is available online - please flash this QRcode this leads to a page with links to further references and code ")
-
-
-
-figpath = os.path.join(home,  'pool/science/RetinaCloudsSparse/2015-11-13_droplets/2015-11-13_1310_full_files/droplets_full')
-for fname in ['00012_droplets_i_sparse_3_n_sf_8.mp4', '00006_droplets_i_sparse_5_n_sf_1.mp4', ]:
-    s.add_slide(content="""
-        <video controls loop width=60%/>
-          <source type="video/mp4" src="{}">
-        </video>
-        """.format(s.embed_video(os.path.join(figpath, fname))),
-                notes="""
-very sparse to very dense
-
-    """)
-
-
-droplets_bib = s.content_bib('Ravello, Escobar, Palacios, LP', '2019', 'in prep', url=None)
-for suffix in ['a', 'b']:
-    s.add_slide(content=s.content_figures(
-                    [#os.path.join(figpath, 'retina_sparseness_droplets.png'),
-                     os.path.join(figpath_talk, 'Droplets_3_' + suffix + '.png')], fragment=False, transpose=True,
-                    title=None, embed=False, height=s.meta['height']*.75)+droplets_bib,
-            notes="""
-figure 3 of droplets
-
-""")
-
-s.add_slide(content=s.content_figures(
-                    ['figures/Droplets_5.png'],
-                    title=None, embed=False, height=s.meta['height']*.75)+droplets_bib,
-            notes="""
-figure 5 of droplets
-
-""")
 
 s.close_section()
 
