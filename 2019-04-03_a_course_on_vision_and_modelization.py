@@ -44,7 +44,7 @@ meta = dict(
  author_link=f'<a href="https://laurentperrinet.github.io/talk/{slugify(tag)}/">Laurent Perrinet</a>',
  short_title='From the retina to action: Understanding visual processing',
  title='From the retina to action: Understanding visual processing',
- conference_url='https://licencesh.hypotheses.org/',
+ conference_url='https://pluri-sciences.univ-amu.fr/licence-sciences-humanites',
  short_conference='Licence Sciences & Humanité',
  conference='Licence Sciences & Humanité',
  location='Marseille (France)',
