@@ -33,7 +33,7 @@ show: html
 #	open -a firefox $(SRC).html
 	open /Applications/Safari.app/Contents/MacOS/Safari  index.html
 
-github: page html
+github: html
 	git commit --dry-run -am 'Test' | grep -q -v 'nothing to commit' && git commit -am' updating slides'
 	git push
 	open https://laurentperrinet.github.io/$(SRC)
