@@ -92,7 +92,7 @@ intro += """
 <h4><a href="{conference_url}">{conference}</a>, {DD}/{MM}/{YYYY} </h4>
 
 <small>
-    This project has received funding from the European Union’s Horizon 2020 research and innovation programme under the Marie Skłodowska-Curie grant agreement n°713750. Also, it has been carried out with the financial support of the Regional Council of Provence-Alpes-Côte d'Azur and with the financial support of the A*MIDEX (n°ANR-11-IDEX-0001-02). This work was granted access to the HPC resources of Aix-Marseille Université financed by the project Equip@Meso (ANR-10-EQPX-29-01) of the program "Investissements d’Avenir".
+    This work was supported by ANR project "Horizontal-V1" N° ANR-17-CE37-0006".
 </small>
 """.format(**meta)
 ###############################################################################
@@ -364,6 +364,15 @@ lateral interactions
 
 """)
 
+
+shl_bib = s.content_bib("LP", "2010", 'Neural Computation', url="https://laurentperrinet.github.io/publication/perrinet-10-shl/")
+
+s.add_slide(content="""
+    <video controls loop width=60%/>
+      <source type="video/mp4" src="{}">
+    </video>
+    """.format('figures/ssc.mp4') + shl_bib )
+
 s.close_section()
 
 i_section += 1
@@ -408,14 +417,6 @@ Theoretical advances in neural networks modelling have recently been pushed by t
 
 """)
 
-
-shl_bib = s.content_bib("LP", "2010", 'Neural Computation', url="https://laurentperrinet.github.io/publication/perrinet-10-shl/")
-
-s.add_slide(content="""
-    <video controls loop width=60%/>
-      <source type="video/mp4" src="{}">
-    </video>
-    """.format('figures/ssc.mp4') + shl_bib )
 
 
 SDPC_bib = s.content_bib('Boutin, Franciosini, Ruffier, LP', '2019', 'submitted',
