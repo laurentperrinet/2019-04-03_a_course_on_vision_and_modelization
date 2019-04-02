@@ -52,7 +52,7 @@ meta = dict(
  YYYY=YYYY, MM=MM, DD=DD,
  tag=tag,
  projects='anr-horizontal-v1',
- time_start = '14:30:00',
+ time_start = '16:00:00',
  url=f'https://laurentperrinet.github.io/talk/{slugify(tag)}',
  sections=['From the retina to action: Levels of modeling',
           'Sparse coding in Neurophysiology and neural processing',

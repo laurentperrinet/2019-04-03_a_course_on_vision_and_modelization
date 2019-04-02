@@ -1,7 +1,7 @@
 # From the retina to action: Understanding visual processing
 
 * Where: Marseille (France), see https://laurentperrinet.github.io/talk/2019-04-03-a-course-on-vision-and-modelization
-* When: 03/04/2019, time: 14:30:00
+* When: 03/04/2019, time: 16:00:00
 
 * What:
   * Slides @ https://laurentperrinet.github.io/2019-04-03_a_course_on_vision_and_modelization
