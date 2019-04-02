@@ -656,7 +656,7 @@ if slides_filename is None:
     location = "{location}",
     projects = "{projects}",
     time_start = "{YYYY}-{MM:02d}-{DD:02d}T{time_start}",
-    time_start = "{YYYY}-{MM:02d}-{DD:02d}T{time_sttime_endart}",
+    time_start = "{YYYY}-{MM:02d}-{DD:02d}T{time_end}",
     url = "{url}",
     url_slides = "https://laurentperrinet.github.io/{tag}",
     url_code = "https://github.com/laurentperrinet/{tag}/",
