@@ -416,7 +416,7 @@ s.add_slide(content=s.content_figures(
         [os.path.join(figpath_talk, "brian-logo.png"),
          os.path.join(figpath_talk, "nest-initiative_logo.png"),
          os.path.join(figpath_talk, "pyNN_logo.png"), ], bgcolor="black",
-        title=s.meta['title'], height=s.meta['height']*.4),
+        title=None, height=s.meta['height']*.4),
           notes="""
 
 """)
@@ -463,7 +463,7 @@ for figname in ['Brunel200Fig1.png', 'Brunel200Fig2.png']:
 for fig_OBV1 in ['2_Figure_psychophys', 'Fig_intro_MC1', 'Fig_intro_MC2', 'Fig_ring_model' ]:
     s.add_slide(content=s.content_figures(
             [os.path.join(figpath_talk, fig_OBV1 + ".png"), ], bgcolor="black",
-            title=None, height=s.meta['height']*.8),
+            title=None, height=s.meta['height']*.61),
               notes="""
     /Users/laurentperrinet/research/OBV1/2018_HL_M1/figs
 
