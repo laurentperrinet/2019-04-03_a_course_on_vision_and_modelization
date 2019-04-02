@@ -1,6 +1,6 @@
 default: github
 
-SRC=2019-03-25_HDR_RobinBaures
+SRC=2019-04-03_a_course_on_vision_and_modelization
 
 edit:
 	atom $(SRC).py
@@ -33,7 +33,7 @@ show: html
 #	open -a firefox $(SRC).html
 	open /Applications/Safari.app/Contents/MacOS/Safari  index.html
 
-github: html
+github: page html
 	git commit --dry-run -am 'Test' | grep -q -v 'nothing to commit' && git commit -am' updating slides'
 	git push
 	open https://laurentperrinet.github.io/$(SRC)
