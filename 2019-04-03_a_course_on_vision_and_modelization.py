@@ -101,7 +101,7 @@ s.add_slide(content=intro)
 s.add_slide(content=s.content_figures(
     #[os.path.join(figpath_talk, 'qr.png')], bgcolor="black",
     [os.path.join(figpath_slides, 'mire.png')], bgcolor=meta['bgcolor'],
-    height=s.meta['height']*.90),
+    height=s.meta['height']*1.),
     #image_fname=os.path.join(figpath_aSPEM, 'mire.png'),
     notes="""
 Check-list:
@@ -142,6 +142,7 @@ From the head on, I wish to thanks people who collaborated  and in particular ..
 """)
 
 Churchland92_bib = s.content_bib("Churchland, P. S. & Sejnowski, T. J.", "1992", 'The computational brain. Cambridge, MA: MIT Press.')
+sejnowski88_bib = s.content_bib("Sejnowski, T. J.  &  Koch, C.  & Churchland, P. S.", "1988", 'Computational Neuroscience.', url="http://www.hms.harvard.edu/bss/neuro/bornlab/nb204/papers/sejnowski-koch-churchland-science1988.pdf")
 
 for si in ['', ]:#, '5dh']:
     s.add_slide(content=s.content_figures(
@@ -149,6 +150,7 @@ for si in ['', ]:#, '5dh']:
             notes="""
 
 Screenshot from Craver, C. F. (2015). Levels. In T. Metzinger & J. M. Windt (Eds). Open MIND: 8(T). Frankfurt am Main: MIND Group. doi: 10.15502/9783958570498 24 | 26
+
 
 """)
 #
@@ -385,6 +387,17 @@ title = meta['sections'][i_section]
 s.add_slide_outline(i_section,
 notes="""
 
+Can we now go to a lower level and model spiking NNs?
+
+""")
+
+s.add_slide(content=s.content_figures(
+        [os.path.join(figpath_talk, "HH_neuron.png"), ], bgcolor="black",
+        title=None, height=s.meta['height']*.8),
+          notes="""
+
+          http://www.math.tamu.edu/~roquesol/Computational_Neuroscience_Summer_I_2018_Session_2-3_Print.pdf
+
 """)
 
 
@@ -392,9 +405,7 @@ s.add_slide(content=s.content_figures(
         [os.path.join(figpath_talk, "HH_Models.png"), ], bgcolor="black",
         title=None, height=s.meta['height']*.8),
           notes="""
-# ownCNRS/2019-01_LACONEU/2019-01-14_LACONEU/tmp/4-HH Models.ipynb
-ownCNRS/2019-01_LACONEU/2019-01-14_LACONEU/A_1_HodgkinHuxley.ipynb
-HH_firing.png
+
 """)
 
 
@@ -437,25 +448,6 @@ s.add_slide(content=s.content_figures(
 
 """)
 
-s.add_slide(content=s.content_figures(
-        [os.path.join(figpath_talk, "hugoladret_InternshipM2_CUBA.png"), ], bgcolor="black",
-        title=None, height=s.meta['height']*.8),
-          notes="""
-
-# https://github.com/hugoladret/InternshipM2/blob/master/FINAL_Retina_LGN_generation.ipynb
-
-""")
-
-
-s.add_slide(content=s.content_figures(
-        [os.path.join(figpath_talk, "Fig_ring_model.png"), ], bgcolor="black",
-        title=None, height=s.meta['height']*.8),
-          notes="""
-
-# /Volumes/data/2018_backup/archives/2018_science/2018_HL_M1/figs/Fig_ring_model.pdf
-
-""")
-
 
 for figname in ['Brunel200Fig1.png', 'Brunel200Fig2.png']:
     s.add_slide(content=s.content_figures(
@@ -467,6 +459,25 @@ for figname in ['Brunel200Fig1.png', 'Brunel200Fig2.png']:
 # https://sci-hub.tw/https://doi.org/10.1016/S0925-2312(00)00179-X
 
 """)
+
+for fig_OBV1 in ['2_Figure_psychophys', 'Fig_intro_MC1', 'Fig_intro_MC2', 'Fig_ring_model' ]:
+    s.add_slide(content=s.content_figures(
+            [os.path.join(figpath_talk, fig_OBV1 + ".png"), ], bgcolor="black",
+            title=None, height=s.meta['height']*.8),
+              notes="""
+    /Users/laurentperrinet/research/OBV1/2018_HL_M1/figs
+
+    """)
+
+s.add_slide(content=s.content_figures(
+        [os.path.join(figpath_talk, "hugoladret_InternshipM2_CUBA.png"), ], bgcolor="black",
+        title=None, height=s.meta['height']*.8),
+          notes="""
+
+# https://github.com/hugoladret/InternshipM2/blob/master/FINAL_Retina_LGN_generation.ipynb
+
+""")
+
 
 s.add_slide(content=s.content_figures(
         [os.path.join(figpath_talk, "fig_sup_stdps.png"), ], bgcolor="black",
@@ -610,7 +621,7 @@ s.add_slide(content=intro,
 
 
 s.add_slide(content=s.content_figures([figname_qr], cell_bgcolor=meta['bgcolor'], height=s.meta['height']*height_ratio) + '<BR><a href="{url}"> {url} </a>'.format(url=meta['url']),
-            notes="All the material is available online - please flash this QRcode this leads to a page with links to further references and code ")
+            notes="All the material is available online - please flash this code this leads to a page with links to further references and code ")
 
 s.close_section()
 
