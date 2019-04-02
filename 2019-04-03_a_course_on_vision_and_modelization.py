@@ -62,6 +62,7 @@ meta = dict(
           ]
 )
 
+
 # https://pythonhosted.org/PyQRCode/rendering.html
 # pip3 install pyqrcode
 # pip3 install pypng
