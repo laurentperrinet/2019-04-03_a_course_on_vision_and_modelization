@@ -53,6 +53,7 @@ meta = dict(
  tag=tag,
  projects='anr-horizontal-v1',
  time_start = '16:00:00',
+ time_end = '18:00:00',
  url=f'https://laurentperrinet.github.io/talk/{slugify(tag)}',
  sections=['From the retina to action: Levels of modeling',
           'Sparse coding in Neurophysiology and neural processing',
@@ -626,13 +627,14 @@ s.add_slide(content=s.content_figures([figname_qr], cell_bgcolor=meta['bgcolor']
 s.close_section()
 
 
+
 if slides_filename is None:
     with open("README.md", "w") as text_file:
         text_file.write("""\
 # {title}
 
 * Where: {location}, see {url}
-* When: {DD:02d}/{MM:02d}/{YYYY}, time: {time_start}
+* When: {DD:02d}/{MM:02d}/{YYYY}, time: {time_start}-{time_end}
 
 * What:
   * Slides @ https://laurentperrinet.github.io/{tag}
@@ -654,6 +656,7 @@ if slides_filename is None:
     location = "{location}",
     projects = "{projects}",
     time_start = "{YYYY}-{MM:02d}-{DD:02d}T{time_start}",
+    time_start = "{YYYY}-{MM:02d}-{DD:02d}T{time_sttime_endart}",
     url = "{url}",
     url_slides = "https://laurentperrinet.github.io/{tag}",
     url_code = "https://github.com/laurentperrinet/{tag}/",
