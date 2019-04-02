@@ -145,7 +145,7 @@ Churchland92_bib = s.content_bib("Churchland, P. S. & Sejnowski, T. J.", "1992",
 
 for si in ['', ]:#, '5dh']:
     s.add_slide(content=s.content_figures(
-            [os.path.join(figpath_talk, 'Churchland92' + si + '.png')], title=None, embed=False, height=s.meta['height']*.7) + ravelllo_bib,
+            [os.path.join(figpath_talk, 'Churchland92' + si + '.png')], title=None, embed=False, height=s.meta['height']*.7) + Churchland92_bib,
             notes="""
 
 Screenshot from Craver, C. F. (2015). Levels. In T. Metzinger & J. M. Windt (Eds). Open MIND: 8(T). Frankfurt am Main: MIND Group. doi: 10.15502/9783958570498 24 | 26
@@ -159,7 +159,7 @@ Screenshot from Craver, C. F. (2015). Levels. In T. Metzinger & J. M. Windt (Eds
 
     for fname in ['scientists.jpg']:
         s.add_slide(content=s.content_figures(
-           [os.path.join(figpath_talk, fname)], cell_bgcolor=bgcolor,
+           [os.path.join(figpath_talk, fname)], cell_bgcolor=meta['bgcolor'],
            title=meta['sections'][i_section], height=s.meta['height']*height_ratio) + bib,
             notes="""
 
@@ -193,7 +193,7 @@ on the video, they characterize a complex cell from area V1 by manipulating the 
 *  Active inference uses a generalisation of Kalman filtering to provide Bayes optimal estimates of hidden states and action in generalized coordinates of motion. As we have seen previously, the central nervous system has to contend with axonal delays, both at the sensory and the motor levels. Representing hidden states in generalized coordinates provides a simple way of compensating for both these delays.
 
 * This mathematical framework can be mapped to the anatomy of the visual system. Similar to the sketch that we have shown above, "compiling" (that is, solving) the equations of Free-energy minimization forms a set of coupled differential equations which correpond to different node along the visuo-oculomotor pathways.
-""",):
+"""]):
         s.add_slide(#image_fname=os.path.join(figpath, fname),
         content=s.content_figures(
     [os.path.join(figpath_talk, fname)], bgcolor="white",
