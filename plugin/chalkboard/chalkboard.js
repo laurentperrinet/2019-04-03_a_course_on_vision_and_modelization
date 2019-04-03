@@ -6,7 +6,7 @@
 ** Version: 0.6
 **
 ** License: MIT license (see LICENSE.md)
-** hello
+** 
 ** Credits:
 ** Chalkboard effect by Mohamed Moustafa https://github.com/mmoustafa/Chalkboard
 ******************************************************************/

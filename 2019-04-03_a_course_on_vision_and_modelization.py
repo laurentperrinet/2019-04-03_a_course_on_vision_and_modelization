@@ -1,8 +1,5 @@
 __author__ = "Laurent Perrinet INT - CNRS"
 __licence__ = 'BSD licence'
-DEBUG = True
-DEBUG = False
-
 import os
 home = os.environ['HOME']
 figpath_talk = 'figures'
@@ -31,13 +28,12 @@ height_ratio = .7
 
 meta = dict(
  embed = True,
- draft = DEBUG, # show notes etc
+ draft = False, # show notes etc
  width= 1600,
  height= 1000,
  # width= 1280, #1600,
  # height= 1024, #1000,
  margin= 0.1618,#
- # reveal_path='https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.7.0/',
  # reveal_path='https://rajgoel.github.io/reveal.js/',
  reveal_path='',
  theme='simple',
@@ -58,7 +54,7 @@ meta = dict(
  time_end = '18:00:00',
  url=f'https://laurentperrinet.github.io/talk/{slugify(tag)}',
  sections=['From the retina to action: Levels of modeling',
-          'Sparse coding in Neurophysiology and neural processing',
+          'Sparse coding in neurophysiology and models',
           'Modeling Spiking Neural Networks',
           'A model of Sparse Deep Predictive Coding',
           ]
@@ -174,7 +170,7 @@ Screenshot from Craver, C. F. (2015). Levels. In T. Metzinger & J. M. Windt (Eds
  """)
 
     s.add_slide(content="""
-        <video controls width=99%/>
+        <video controls width=90%/>
           <source type="video/mp4" src="{}">
         </video>
         <BR>
@@ -453,7 +449,7 @@ s.add_slide(content=s.content_figures(
 """)
 
 
-for figname in ['Brunel200Fig1.png', 'Brunel200Fig2.png']:
+for figname in ['Brunel200Fig2.png', 'Brunel200Fig1.png']:
     s.add_slide(content=s.content_figures(
         [os.path.join(figpath_talk, figname), ], bgcolor="black",
         title=None, height=s.meta['height']*.8),
@@ -464,10 +460,10 @@ for figname in ['Brunel200Fig1.png', 'Brunel200Fig2.png']:
 
 """)
 
-for fig_OBV1 in ['2_Figure_psychophys', 'Fig_intro_MC1', 'Fig_intro_MC2', 'Fig_ring_model' ]:
+for fig_OBV1, h in [('2_Figure_psychophys', .9), ('Fig_intro_MC1', .61), ('Fig_intro_MC2', .61), ('Fig_ring_model', .99) ]:
     s.add_slide(content=s.content_figures(
             [os.path.join(figpath_talk, fig_OBV1 + ".png"), ], bgcolor="black",
-            title=None, height=s.meta['height']*.61),
+            title=None, height=s.meta['height']*h),
               notes="""
     /Users/laurentperrinet/research/OBV1/2018_HL_M1/figs
 
