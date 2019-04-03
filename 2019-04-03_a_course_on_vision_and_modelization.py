@@ -34,7 +34,7 @@ meta = dict(
  # width= 1280, #1600,
  # height= 1024, #1000,
  margin= 0.1618,#
- # reveal_path='https://rajgoel.github.io/reveal.js/',
+ # reveal_path='http://laurentperrinet.github.io/slides.py/',
  reveal_path='',
  theme='simple',
  bgcolor="white",
@@ -181,12 +181,58 @@ on the video, they characterize a complex cell from area V1 by manipulating the 
     """)
 
 
+
+    # anatomical
+    s.add_slide(content=s.content_figures(
+            [os.path.join(figpath_talk, 'Bosking97Fig4.jpg')], title=None, height=s.meta['height']*.85) +
+                s.content_bib("Bosking et al.", "1997", " Journal of Neuroscience"),
+                notes="""
+    ... is the set of long-range lateral connections between neurons, which could
+    act to facilitate detection of contours matching the association field, and/or
+    inhibit detection of other contours. To fill this role, the lateral connections
+    would need to be orientation specific and aligned along contours, * (colin) and
+    indeed such an arrangement has been found in treeshrew's primary visual
+    cortex  (Bosking et al., J Neurosci 17:2112-27, 1997)
+    * (neural) if one looks at  the primary visual area in the occipital lobe of the cortex
+    using optical imaging as here in the treeshrew by Bosking and colleagues under the
+    supervision of DF, one could represent the distributed, topographical representation
+    of orientation selectivity. in (A) and (B) the orientation giving the most response
+    at each cortical position is represented by hue using the code below from orange for
+    horizontal to blue for verticals, and typical structures are magnified in (C): stripes
+    (on the periphery) and pinwheels. You can understand this as a packing of a 3D feature
+    space on the 2D surface of the cortex.
+    * (method)  Tree shrew orientation preference maps were obtained using optical imaging.
+    Additionally, 540 nm light was used to map surface blood vessels used for alignment.
+    Biocytin was then injected into a specific site in V1 and the animal was sacrificed 16
+    hours later. Slices of V1 were imaged to locate the biocytin bouton and the surface
+    blood vessels. The blood vessel information was then used to align the orientation
+    preference maps with the bouton images giving overlaid information on the underlying
+    connectivity from the injection site on the animal. The original experiment used a total
+    of ten cases.
+    * (lateral) we show here one result of Bosking
+    which overlay over a map or orientation selectivity the network of lateral connectivity
+    originating froma group of neurons with similar orientations and position. There is
+    a structure in this connectivity towards locality (more pronounced for site B) +
+    connecting iso orientations even on long ranges (A). This type of structure tends
+    to wire together those neurons that have similar orientations, indicating a prior
+    to colinearities.
+    *(colin) ... Overall, a typical assumption that the role of lateral interactions is to
+    enhance the activity of neurons which are collinear : it is the so-called
+    **association field** formalized in Field 93, as was for instance modeled neurally in
+    the work from P. Series or in this version for computer vision
+    * (physio) is there a match of these structures with the statistics of natural images?
+     2) Some authors (Kisvarday, 1997, Chavane and Monier) even say it is weak or
+    inexistent on a the scale of the area... 1:  Hunt & Goodhill have reinterpreted above data and shown that there is more diversity
+    than that -
+    * TRANSITION : my goal here will be to tackle this problem at different levels:
+    """)
+
+
     # figpath = os.path.join(home, 'tmp/2015_RTC/2014-12-31_PerrinetAdamsFriston14/poster/12-06-25_AREADNE/')
     freemove_bib = s.content_bib("LP, Adams and Friston", "2015", 'Biological Cybernetics', url="http://invibe.net/LaurentPerrinet/Publications/PerrinetAdamsFriston14")
 
     #for fname in ['figure1.png', 'figure2.png']:
     # figpath_law = os.path.join(home, 'quantic/2016_science/2016-10-13_LAW/figures')
-    figpath = 'figures/'
     for fname, note in zip(['friston_figure2.png', 'friston_figure1.png'], ["""
 * This schematic shows the dependencies among various quantities modelling exchanges of an agent with the environment. It shows the states of the environment and the system in terms of a probabilistic dependency graph, where connections denote directed (causal) dependencies. The quantities are described within the nodes of this graph -- with exemplar forms for their dependencies on other variables.
 
@@ -196,8 +242,7 @@ on the video, they characterize a complex cell from area V1 by manipulating the 
 
 * This mathematical framework can be mapped to the anatomy of the visual system. Similar to the sketch that we have shown above, "compiling" (that is, solving) the equations of Free-energy minimization forms a set of coupled differential equations which correpond to different node along the visuo-oculomotor pathways.
 """]):
-        s.add_slide(#image_fname=os.path.join(figpath, fname),
-        content=s.content_figures(
+        s.add_slide(content=s.content_figures(
     [os.path.join(figpath_talk, fname)], bgcolor="white",
     #title=title,
      height=s.meta['height']*height_ratio) + freemove_bib,
