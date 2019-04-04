@@ -438,7 +438,8 @@ Can we now go to a lower level and model spiking NNs?
 
 s.add_slide(content=s.content_figures(
         [os.path.join(figpath_talk, "HH_neuron.png"), ], bgcolor="black",
-        title=None, height=s.meta['height']*.8),
+        title=None, height=s.meta['height']*.8) +
+            s.content_bib("Hodgkin & Huxley", "1952", "The Journal of physiology"),
           notes="""
 
           http://www.math.tamu.edu/~roquesol/Computational_Neuroscience_Summer_I_2018_Session_2-3_Print.pdf
@@ -474,22 +475,23 @@ s.add_slide(content=s.content_figures(
 ownCNRS/2019-01_LACONEU/2019-01-14_LACONEU/A_1_HodgkinHuxley.ipynb
 HH_firing.png
 """)
-
-s.add_slide(content=s.content_figures(
-        [os.path.join(figpath_talk, "IF_cond_exp.png"), ], bgcolor="black",
-        title=None, height=s.meta['height']*.8),
-          notes="""
-
-# http://neuralensemble.org/docs/PyNN/0.7/_images/IF_cond_exp.png
-
-""")
+#
+# s.add_slide(content=s.content_figures(
+#         [os.path.join(figpath_talk, "IF_cond_exp.png"), ], bgcolor="black",
+#         title=None, height=s.meta['height']*.8),
+#           notes="""
+#
+# # http://neuralensemble.org/docs/PyNN/0.7/_images/IF_cond_exp.png
+#
+# """)
 
 s.add_slide(content=s.content_figures(
         [os.path.join(figpath_talk, "izhik.png"), ], bgcolor="black",
-        title=None, height=s.meta['height']*.8),
+        title=None, height=s.meta['height']*.8) +
+            s.content_bib("Izhikevich", "2003", "IEEE Transactions on Neural Network", url="https://www.izhikevich.org/publications/spikes.htm"),
           notes="""
 
-# https://www.izhikevich.org/publications/izhik.png
+#
 
 """)
 
@@ -497,7 +499,8 @@ s.add_slide(content=s.content_figures(
 for figname in ['Brunel200Fig2.png', 'Brunel200Fig1.png']:
     s.add_slide(content=s.content_figures(
         [os.path.join(figpath_talk, figname), ], bgcolor="black",
-        title=None, height=s.meta['height']*.8),
+        title=None, height=s.meta['height']*.8) +
+            s.content_bib("Brunel & Hakim", "2000", "The Journal of physiology", url="https://doi.org/10.1016/S0925-2312(00)00179-X"),
           notes="""
 
 
