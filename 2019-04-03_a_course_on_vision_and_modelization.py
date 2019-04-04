@@ -500,7 +500,7 @@ for figname in ['Brunel200Fig2.png', 'Brunel200Fig1.png']:
     s.add_slide(content=s.content_figures(
         [os.path.join(figpath_talk, figname), ], bgcolor="black",
         title=None, height=s.meta['height']*.8) +
-            s.content_bib("Brunel & Hakim", "2000", "The Journal of physiology", url="https://doi.org/10.1016/S0925-2312(00)00179-X"),
+            s.content_bib("Brunel", "2000", "Neurocomputing", url="https://sci-hub.tw/https://doi.org/10.1016/S0925-2312(00)00179-X"),
           notes="""
 
 
