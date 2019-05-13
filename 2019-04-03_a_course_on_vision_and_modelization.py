@@ -674,7 +674,6 @@ s.add_slide(content=s.content_figures([figname_qr], cell_bgcolor=meta['bgcolor']
 s.close_section()
 
 
-
 if slides_filename is None:
     with open("README.md", "w") as text_file:
         text_file.write("""\
