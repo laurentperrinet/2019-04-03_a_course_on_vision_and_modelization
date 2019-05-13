@@ -44,3 +44,28 @@ Et pour celà, nous allons procéder à plusieures étapes progressives:
 ## références
 
 * http://e.guigon.free.fr/rsc/article/BretteGuigon03.pdf
+
+# A selection of Izhikevich neurons
+
+## contexte
+
+Pour étendre notre répertoire de types de neurones, utilisons le formalisme de Eugene Izhikevich:
+
+![An electronic version of the figure and reproduction permissions are freely available at www.izhikevich.com](http://people.ece.cornell.edu/land/courses/ece5760/DDA/AnallogSimIzhikevich/izhik.gif "phase space")
+
+## simulations:
+
+- Intrinsically bursting (IB) (reset_voltage=-55, reset_recovery=4)
+
+- Chattering (CH) (reset_voltage=-50, reset_recovery=2)
+
+- Fast spiking (FS) (tau_recovery=0.1)
+
+- Low-threshold spiking (LTS) (coupling=0.25)
+
+- Resonator (RZ) (tau_recovery=0.1, coupling=0.26)
+
+## références
+
+* https://www.nengo.ai/nengo/examples/advanced/izhikevich.html
+* http://neuralensemble.org/docs/PyNN/examples/Izhikevich.html

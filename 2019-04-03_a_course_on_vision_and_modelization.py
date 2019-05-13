@@ -139,6 +139,7 @@ From the head on, I wish to thanks people who collaborated  and in particular ..
 
 * (SHOW TITLE)
 
+topics : python neuroscience science differential-equations spiking-neural-networks biological-simulations simulation-framework 
 """)
 
 Churchland92_bib = s.content_bib("Churchland, P. S. & Sejnowski, T. J.", "1992", 'The computational brain. Cambridge, MA: MIT Press.')
