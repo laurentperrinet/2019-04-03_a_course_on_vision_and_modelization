@@ -16,7 +16,7 @@ Ici, nous allons essayer de répliquer la figure 1 de [Mainen & Sejnowski (1995)
 
 ![Mainen Sejnowski 1995](http://i.stack.imgur.com/ixnrz.png "figure 1")
 
-Et pour celà, nous allons procéder à plusieures étapes progressives:
+Et pour celà, nous allons procéder à plusieures étapes progressives à rédiger dans le [noteboook](src/A_0_IntegrateAndFire.ipynb):
 
 ## prise en main des outils: numpy et matplotlib
 
@@ -54,6 +54,8 @@ Pour étendre notre répertoire de types de neurones, utilisons le formalisme de
 ![An electronic version of the figure and reproduction permissions are freely available at www.izhikevich.com](http://people.ece.cornell.edu/land/courses/ece5760/DDA/AnallogSimIzhikevich/izhik.gif "phase space")
 
 ## simulations:
+
+à rédiger dans le [noteboook](src/A_2_Izhikevich.ipynb)
 
 - Intrinsically bursting (IB) (reset_voltage=-55, reset_recovery=4)
 
