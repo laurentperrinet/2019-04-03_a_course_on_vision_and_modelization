@@ -1,4 +1,4 @@
-default: github page
+default: github
 
 SRC=2019-04-03_a_course_on_vision_and_modelization
 
