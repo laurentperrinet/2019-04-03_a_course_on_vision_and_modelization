@@ -16,9 +16,13 @@ Le but de cette première tache est de créer un "raster plot" qui montre la rep
 
 Ici, nous allons essayer de répliquer la figure 1 de [Mainen & Sejnowski (1995)](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.299.8560&rep=rep1&type=pdf)
 
+![Mainen Sejnowski 1995](http://i.stack.imgur.com/ixnrz.png "figure 1")
+
+
 ## définition du problème: leaky-integrate and fire neuron
 
-- on va simuler 1 neurone pour 2 secondes avec une précision de $dt=1ms$
+- on va simuler 1 neurone pour 2 secondes avec une précision de dt=1ms
+- pour cela, on utilise
 
 ## réponse impulsionnelle
 
