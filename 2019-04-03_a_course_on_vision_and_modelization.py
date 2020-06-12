@@ -230,7 +230,7 @@ on the video, they characterize a complex cell from area V1 by manipulating the 
 
 
     # figpath = os.path.join(home, 'tmp/2015_RTC/2014-12-31_PerrinetAdamsFriston14/poster/12-06-25_AREADNE/')
-    freemove_bib = s.content_bib("LP, Adams and Friston", "2015", 'Biological Cybernetics', url="http://invibe.net/LaurentPerrinet/Publications/PerrinetAdamsFriston14")
+    freemove_bib = s.content_bib("LP, Adams and Friston", "2015", 'Biological Cybernetics', url="https://laurentperrinet.github.io/publication/perrinet-adams-friston-14/")
 
     #for fname in ['figure1.png', 'figure2.png']:
     # figpath_law = os.path.join(home, 'quantic/2016_science/2016-10-13_LAW/figures')
@@ -266,7 +266,7 @@ notes="""
 """)
 
 
-ravello_bib = s.content_bib("LP", "2015", '"Sparse models" in <a href="http://invibe.net/LaurentPerrinet/Publications/Perrinet15bicv">Biologically Inspired Computer Vision</a>')
+ravello_bib = s.content_bib("LP", "2015", '"Sparse models" in <a href="https://laurentperrinet.github.io/publication/cristobal-perrinet-keil-15-bicv/">Biologically Inspired Computer Vision</a>')
 # $ o /Users/laurentperrinet/pool/blog/laurentperrinet.github.io_sciblog/files/2019-01-30_Ravello19_text.mp4
 # /Users/laurentperrinet/pool/blog/hugo_academic/content/publication/ravello-19
 ravelllo_bib = s.content_bib('Ravello, LP, Escobar, Palacios', '2019', 'Scientific Reports', url='https://laurentperrinet.github.io/publication/ravello-19/')
@@ -338,7 +338,7 @@ there are many more evidences for this and in particular, we have modeled that f
 
 
 
-review_bib = s.content_bib("LP", "2015", '"Sparse models" in <a href="http://invibe.net/LaurentPerrinet/Publications/Perrinet15bicv">Biologically Inspired Computer Vision</a>')
+review_bib = s.content_bib("LP", "2015", '"Sparse models" in <a href="https://laurentperrinet.github.io/publication/cristobal-perrinet-keil-15-bicv/">Biologically Inspired Computer Vision</a>')
 #
 # figpath = os.path.join(home, 'science/invibe/2018_visuels')
 # s.add_slide(content="""
