@@ -578,7 +578,7 @@ Theoretical advances in neural networks modelling have recently been pushed by t
 
 
 SDPC_bib = s.content_bib('Boutin, Franciosini, Ruffier, LP', '2019', 'submitted',
-            url="https://laurentperrinet.github.io/publication/boutin-franciosini-ruffier-perrinet-19/")
+            url="https://laurentperrinet.github.io/publication/boutin-franciosini-chavane-ruffier-perrinet-20/")
 
 for suffix in ['_a']:
     s.add_slide(content=s.content_figures(
